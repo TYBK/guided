@@ -155,6 +155,16 @@
   column-gap: 1.25em;
 }
 
+.text-border {
+  border-top: clamp(1px, 0.2vw, 1px) solid #ffffff;
+  margin-left: clamp(20px, 5vw, 100px);
+  margin-right: clamp(20px, 5vw, 100px);
+  padding-left: clamp(10px, 2vw, 50px);
+  padding-right: clamp(10px, 2vw, 50px);
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
 .legal {
   font-size: 12px;
   padding: 20px;
@@ -847,7 +857,9 @@
       </ul>
     </li>
   </ul>
-  
+
+<div class="text-border"></div>
+<footer class="footer-tag">
   <div class="legal">
     <p>&copy; 2023 Teka Labs</p>
     

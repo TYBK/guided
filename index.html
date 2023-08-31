@@ -41,6 +41,15 @@
         height: 100%;
       }
 
+      .fixed-item {
+        position: fixed;
+        top: 60px;
+        z-index: 1;
+        opacity: 1;
+        transition: all 0.3s ease; /* Adding a smooth transition */
+      }
+
+
       .guided-logo {
         margin-left: 40px;
         width: 200px;
@@ -89,7 +98,7 @@
         border-color: black;
         border-style: solid;
         z-index: 1;
-        margin-right: 30px;
+        margin-right: 70px;
       }
 
       .get-started-btn:hover {
@@ -659,20 +668,24 @@
         }
 
         .guided-logo {
-          margin-left: 10px;
         }
 
         .login-btn {
-          top: 130px;
-          font-weight: 800;
-          white-space: nowrap; /* Add this line */
-          padding-left: 20px;
+          top: 140px;
+          height: 50px;
+          width: 150px;
+          font-size: 20px;
+          white-space: nowrap;
+          padding: 0px;
         }
 
         .get-started-btn {
-          top: 130px;
-          font-weight: 800;
-          white-space: nowrap; /* Add this line */
+          top: 140px;
+          height: 50px;
+          width: 150px;
+          font-size: 20px;
+          white-space: nowrap;
+          padding: 0px;
         }
 
         #screens {
@@ -704,17 +717,10 @@
         }
 
         .login-btn {
-          top: 130px;
-          font-weight: 800;
-          white-space: nowrap; /* Add this line */
-          margin-right: 0px;
         }
 
         .get-started-btn {
-          top: 130px;
-          font-weight: 800;
-          white-space: nowrap; /* Add this line */
-          margin-right: 0px;
+
         }
 
         .intro-title {
@@ -779,10 +785,8 @@
     <section id="hero">
       <div class="left">
         <img src="Images/GUIDED.png" alt="teka logo" class="guided-logo">  
-        <div class="header-btns">
-          <button class="get-started-btn">Get Started</button>    
-          <button class="login-btn">Login</button>    
-        </div>
+        <button class="get-started-btn">Get Started</button>    
+        <button class="login-btn">Login</button>    
         <h1 class="intro-title">You <br> Are Here <br> To Learn</h1>
         <div id="heroLeftBg" class="hero-bg"></div>
       </div>

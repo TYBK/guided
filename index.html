@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Guided</title>
+    <meta name="description" content="You Are Here To Learn" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:image" content="Images/tekametaimg.png" />
+    <meta name="twitter:image" content="Images/tekametaimg.png" />
+    <link rel="stylesheet" href="path/to/fontawesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <style type="text/css">
+      @font-face {
+        font-family: 'Bauziet Variable';
+        src: url("/Bauziet-Variable.ttf");
+        font-family: 'Inter-Bold';
+        src: url("/Inter-Bold.ttf");
+      }
+
+      *{box-sizing:border-box}html,body,ul,ol,li,dl,dd,dt,form,fieldset,button,h1,h2,h3{margin:0;padding:0}ul,ol{list-style:none}a{text-decoration:none}table{border-collapse:collapse;border-spacing:0}
+      input,textarea,select{margin:0;padding:0;border:none;font:inherit;color:inherit;background-color:transparent;appearance:none}input[type="checkbox"],input[type="radio"]{border-radius:0}button,input[type="button"],input[type="submit"],input[type="reset"]{margin:0;padding:0;border:none;background-color:transparent;font:inherit;color:inherit;cursor:pointer;appearance:none}textarea{resize:vertical}select::-ms-expand{display:none}select{-webkit-appearance:none;-moz-appearance:none;appearance:none;background-color:transparent;background-image:none}:focus{outline:none}:disabled{opacity:0.5;cursor:not-allowed}
+      
+      html {
+        min-height: 100%;
+        height: 100%;
+        background-color: #C7B6D2;
+      }
+
+      body {
+        font-family: 'Bauziet Variable',sans-serif;
+        font-style: normal;
+        font-weight: 415;
+        font-size: 28px;
+        line-height: 1.3em;
+        font-feature-settings: 'tnum' on, 'lnum' on;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+        color: #141616;
+        min-height: 100%;
+        height: 100%;
+      }
+
+      .guided-logo {
+        margin-left: 40px;
+        width: 200px;
+        position: fixed; /* Set the position to fixed */
+        top: 60px; /* Adjust the top value according to your design */
+        left: 40px; /* Adjust the left value according to your design */
+      }
+
+
+      a {
+        color: #141616;
+      }
+
+      h1 {
+        font-size: 110px;
+        line-height: 1em;
+        font-weight: 560;
+        margin-bottom: 0.3em;
+      }
+
+      img {
+        width: 100%;
+      }
+
+     /* footer */
+
+     .footer {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 30px 30px 20px 30px;
+  color: white;
+  background-color: #C7B6D2;
+  border-top: 1px solid #C7B6D2;
+}
+
+.footer > * {
+  flex:  1 100%;
+}
+
+.footer__addr {
+  margin-right: 5.25em;
+  margin-bottom: 2em;
+  margin-left: 20px;
+}
+
+.footer__logo {
+  font-size: 1.5rem;
+}
+
+.footer__addr h2 {
+  margin-top: 1.3em;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.nav__title {
+  font-weight: 400;
+  font-size: 15px;
+}
+
+.footer address {
+  font-style: normal;
+  color: #999;
+}
+
+.footer__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  max-width: max-content;
+  background-color: rgb(33, 33, 33, 0.07);
+  border-radius: 100px;
+  color: #2f2f2f;
+  line-height: 0;
+  margin: 0.6em 0;
+  font-size: 1rem;
+  padding: 0 1.3em;
+}
+
+.footer ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.footer li {
+  line-height: 2em;
+}
+
+.footer a {
+  text-decoration: none;
+}
+
+.footer__nav {
+  display: flex;
+  flex-flow: row wrap;
+  flex: 2 0px; /* Adjust the flex property */
+  margin-left: 30px;
+}
+
+.footer__nav > * {
+  flex: 1; /* Adjust the flex property */
+  margin-right: 1em;
+}
+
+.nav__ul a {
+  color: #ffffff;
+}
+
+.nav__ul--extra {
+  column-count: 1;
+  column-gap: 1.25em;
+}
+
+.legal {
+  font-size: 12px;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  color: #ffffff;
+}
+  
+.legal__links {
+  display: flex;
+  align-items: center;
+  margin-right: 0px;
+}
+
+.footer_logo {
+  width: auto;
+  height: 50px;
+  margin-right: 0.5em;
+}
+
+.heart {
+  color: #2f2f2f;
+}
+
+.contact-title {
+  padding-top: 100px;
+        font-family: Inter-Bold.ttf, Arial;
+        font-size: 107.193px;
+        -webkit-text-fill-color: transparent;
+        -webkit-text-stroke-width: 2px;
+        -webkit-text-stroke-color: #000000;
+        white-space: nowrap; /* Add this line */
+        text-align: left; /* Add this line */
+        z-index: 111;
+}
+
+@media screen and (min-width: 24.375em) {
+  .legal .legal__links {
+    margin-left: auto;
+  }
+}
+
+@media screen and (min-width: 40.375em) {
+  .footer__nav > * {
+    flex: 1;
+  }
+
+  .nav__item {
+    flex-grow: 1;
+  }
+  
+  .nav__item--extra {
+    flex-grow: 1;
+  }
+  
+  .footer__addr {
+    flex: 1 0px;
+  }
+  
+  .footer__nav {
+    flex: 2 0px;
+  }
+}
+
+      #header {
+        position: fixed;
+        width: 50%;
+        height: 40px;
+        left: 0;
+        top: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 80px;
+        transform: translateY(0);
+        z-index: 4;
+        pointer-events: none;
+        will-change: transform;
+      }
+
+      #wordmark {
+        transform: scale(1);
+        transform-origin: center left;
+        transition: color 0.5s ease, transform 0.1s ease-out;
+        will-change: transform;
+      }
+
+      #wordmark.dark {
+        color: #141616;
+      }
+
+      #mark {
+        transform: scale(1) rotate(0);
+        transform-origin: center center;
+        transition: transform 0.1s ease-out;
+        will-change: transform;
+      }
+
+      @supports (mix-blend-mode: difference) {
+        #header {
+          mix-blend-mode: difference;
+        }
+        #wordmark {
+          color: #F86A83;
+        }
+        #wordmark.dark, #mark {
+          color: #D2D3D4;
+        }
+      }
+
+      #screens {
+        display: none;
+        position: fixed;
+        width: 100%;
+        left: 0;
+        right: 0;
+        bottom: -10%;
+        padding: 0;
+        margin: 0;
+        line-height: 0;
+        transform: translateX(-25%) scale(0.5);
+        z-index: 2;
+        pointer-events: none;
+        transition: transform 0.1s ease-out;
+        will-change: transform, bottom;
+      }
+
+      #screens figure {
+        position: absolute;
+        padding: 0;
+        margin: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        transform: translateY(100%);
+        transition: transform 0.35s ease-in-out;
+        will-change: transform;
+      }
+
+      #screens.section1 #screen1 {
+        transform: translateY(0);
+      }
+      #screens.section2 #screen2 {
+        transform: translateY(0);
+      }
+      #screens.section3 #screen3 {
+        transform: translateY(0);
+      }
+      #screens.section4 #screen4 {
+        transform: translateY(0);
+      }
+
+      #elements figure {
+        position: absolute;
+        padding: 0;
+        margin: 0;
+        opacity: 1;
+        transform: translateX(0) translateY(0);
+      }
+
+      #ui1 {
+        top: 300px;
+        left: 30%;
+        width: 135px; /* Adjusted width */
+        height: 215px; /* Adjusted height */
+        z-index: 1;
+      }
+      #ui2 {
+        display: none;
+        top: 8%;
+        left: -190px;
+        width: 345px; /* 315px * 3 */
+        height: 447px; /* 349px * 3 */
+        z-index: -1;
+      } 
+      #ui3 {
+        right: 305px; /* Adjusted right */
+        bottom: 320px; /* Adjusted bottom */
+        width: 135px; /* Adjusted width */
+        height: 215px; /* Adjusted height */
+      }
+      #ui4 {
+        bottom: 220px; /* Adjusted bottom */
+        left: 300px; /* Adjusted left */
+        width: 175px; /* Adjusted width */
+        height: 215px; /* Adjusted height */
+        z-index: 1;
+      }
+      #ui5 {
+        bottom: 100px;
+        left: 390px; /* Adjusted left */
+        width: 135px; /* Adjusted width */
+        height: 215px; /* Adjusted height */
+        z-index: 1;
+      }
+
+
+      section {
+        min-height: 100%;
+        text-align: center;
+        padding: 100px 80px;
+      }
+
+      section .left, section .right {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+      }
+
+      #section1 {
+        margin-top: 80%;
+      }
+
+      #hero, #final {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+      }
+
+      #hero {
+        position: fixed;
+        transform: translateY(0);
+        top: 0;
+      }
+
+      .hero-bg {
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        opacity: 1;
+      }
+
+      #hero .left, #final .left {
+        position: relative;
+        width: 50%;
+        height: 100%;
+        padding: 80px;
+        padding-left: 80px;
+        text-align: left;
+      }
+
+      #hero h1 {
+        margin-top: 80px;
+      }
+      
+      #hero .left .hero-bg {
+        background-color: #C7B6D2;
+      }
+
+      #hero .right {
+        position: relative;
+        width: 50%;
+        height: 100%;
+      }
+
+      #hero .right .hero-bg {
+
+      }
+
+      #final .left {
+        width: 50%;
+      }
+
+      #final .right {
+        width: 35%;
+        height: 100%;
+        background: transparent url('') no-repeat center center;
+      }
+
+      form {
+        padding: 20px;
+        width: 400px;
+        text-align: left;
+        background: #FFFFFF;
+        font-size: 14px;
+        box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25), 0px 15px 60px rgba(0, 0, 0, 0.15), 0px 5px 7px rgba(0, 0, 0, 0.05), 0px 4px 20px rgba(0, 0, 0, 0.04);
+        border-radius: 10px;
+        transform: translateX(-50%);
+      }
+
+      form > div.input {
+        padding: 10px 20px 25px 20px;
+        border-bottom: 1px solid #E6E9EA;
+      }
+
+      form > div.submit {
+        padding: 20px;
+      }
+
+      .intro-title {
+        padding-top: 100px;
+        font-family: "Inter-Bold.ttf", Arial;
+        font-size: 207.193px;
+        -webkit-text-fill-color: transparent;
+        -webkit-text-stroke-width: 2px;
+        -webkit-text-stroke-color: #000000;
+        white-space: nowrap; /* Add this line */
+        text-align: left; /* Add this line */
+        z-index: 111;
+      }
+
+      .spatial {
+        height: 30px;
+      }
+
+      .spatial2 {
+        height: 10px;
+      }
+
+      label {
+        display: block;
+        font-size: 12px;
+      }
+
+      input[type=text], input[type=email] {
+        display: block;
+        width: 100%;
+        background: #F8FAF9;
+        border: 1px solid #E6E9EA;
+        border-radius: 8px;
+        padding: 4px 10px 4px 15px;
+        transition: border-color 0.2s ease-out;
+      }
+
+      input[type=text]:focus, input[type=email]:focus {
+        border-color: #141616;
+      }
+
+      input[type=submit] {
+        display: block;
+        width: 100%;
+        color: #FFFFFF;
+        background: #141616;
+        border-radius: 8px;
+        padding: 13px 20px;
+        font-weight: 590;
+      }
+
+      select {
+        display: block;
+        width: 100%;
+        box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5), 0px 2px 3px rgba(0, 0, 0, 0.05), 0px 4px 20px rgba(0, 0, 0, 0.04);
+        border-radius: 8px;
+        padding: 4px 10px 4px 15px;
+        background: #FFFFFF url('Images/arrow-dropdown.svg') no-repeat right 10px center;
+      }
+
+      ::selection {
+        background: #989D9D;
+      }
+      ::-moz-selection {
+        background: #ffb7b7;
+      }
+
+      #thankYouMessage {
+        background-color: #000000;
+        color: #fff;
+        padding: 15px;
+        border-radius: 8px;
+        position: fixed; /* Position the element relative to the viewport */
+        top: 50%; /* Move the top edge to the center of the viewport */
+        left: 50%; /* Move the left edge to the center of the viewport */
+        transform: translate(-50%, -50%); /* Center the element precisely */
+        text-align: center;
+        font-size: 18px;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+      }
+
+      .contact-form {
+        border-color: black;
+        border-width: 4px;
+        border-style: solid;
+        border-radius: 10px;
+      }
+
+      @media (max-width: 1200px) {
+        body {
+          font-size: 24px;
+        }
+        h1 {
+          font-size: 72px;
+        }
+        .intro-title {
+          font-size: 120px;
+          padding: 20px;
+        }
+        #header {
+          padding: 60px;
+          width: 100%;
+        }
+        #screens {
+          bottom: -30%;
+          transform: translateX(0) scale(1);
+        }
+        #hero, #final {
+          position: relative;
+        }
+
+        #hero .right {
+          display: none;
+        }
+
+        #final {
+          display: block;
+          height: auto;
+          min-height: auto;
+        }
+        #hero .left, #final .left, #final .right {
+          width: 100%;
+          text-align: center;
+          align-items: center;
+        }
+        #final .left {
+          padding-bottom: 140px;
+        }
+        #section1 {
+          margin-top: 0;
+        }
+        form {
+          margin: 0 auto;
+          transform: translateX(0) translateY(-50px);
+        }
+        footer {
+          position: relative;
+          margin-top: 0;
+          justify-content: center;
+          align-items: center;
+        }
+      
+
+      @media (max-width: 1000px) {
+        form {
+          width: 80%;
+          overflow-x: hidden;
+        }
+        #screens {
+          bottom: -20%;
+          transform: translateX(0) scale(1);
+        }
+        .intro-title {
+          font-size: 100px;
+          padding: 20px;
+        }
+        .contact-title {
+          padding-top: 0px;
+          font-size: 75px;
+          padding-bottom: 0px;
+        }
+      }
+
+      @media (max-width: 450px) {
+        body {
+          font-size: 20px;
+          overflow-x: hidden;
+        }
+        h1 {
+          font-size: 36px;
+        }
+
+        .intro-title {
+          font-size: 60px;
+          padding: 20px;
+        }
+
+        #screens {
+          bottom: -10%;
+        }
+        #header {
+          padding: 30px 20px;
+        }
+        footer {
+          display: block;
+          text-align: center;
+          padding: 20px 30px;
+        }
+        #hero .left, #final .left {
+          padding: 100px 30px;
+        }
+        #wordmark, #mark {
+          height: 50px;
+          width: auto;
+        }
+        section {
+          padding: 100px 30px;
+        }
+
+      }
+
+    </style>
+  </head>
+  <body>
+    <header id="header">
+      <div>
+        <svg id="wordmark" width="128" height="40" viewBox="0 0 128 40" fill="none" xmlns="http://www.w3.org/2000/svg" alt="teka logo">x
+          <!-- Your paths for the Teka logo here -->
+        </svg>
+      </div>
+      <div>
+        <img src="none" alt="" id="mark" display="none">
+      </div>
+    </header>
+
+    <div id="screens" class="section1">
+      <figure id="screen1">
+        <img src="Images/big/index.png" alt="Teka">
+      </figure>
+      <figure id="screen2">
+        <img src="Images/big/collections.png" alt="Teka">
+      </figure>
+      <figure id="screen3">
+        <img src="Images/big/apis.png" alt="Teka">
+      </figure>
+      <figure id="screen4">
+        <img src="Images/big/functions.png" alt="Teka">
+      </figure>
+    </div>
+    
+    <section id="hero">
+      <div class="left">
+        <img src="Images/GUIDED.png" alt="teka logo" class="guided-logo">      
+
+        <h1 class="intro-title">You <br> Are Here <br> To Learn</h1>
+        <div id="heroLeftBg" class="hero-bg"></div>
+      </div>
+      <div class="right">
+        <div id="elements">
+          <figure id="ui1">
+            <img src="Images/deploy.png" alt="Teka">
+          </figure>
+          <figure id="ui2">
+            <img src="Images/env-card.png" alt="Teka">
+          </figure>
+          <figure id="ui3">
+            <img src="Images/type.png" alt="Teka">
+          </figure>
+          <figure id="ui4">
+            <img src="Images/modal.png" alt="Teka">
+          </figure>
+          <figure id="ui5">
+            <img src="Images/preview.png" alt="Teka">
+        </div>
+        <div id="heroRightBg" class="hero-bg"></div>
+      </div>
+    </section>
+
+    <section id="section1">
+  <h1>Guidebooks </h1>
+  <p>Unlock your potential through guided mastery.</p>
+</section>
+
+<section id="section2">
+  <h1>Challenges</h1>
+  <p>Sprint-Style Workshops to embrace rapid growth.</p>
+</section>
+
+<section id="section3">
+  <h1>Community</h1>
+  <p>Find real connection and support on your path to self-discovery.</p>
+</section>
+
+<section id="section4">
+  <h1>Coaching</h1>
+  <p>Elevate yourself and craft a better world with our transformative coaching.</p>
+</section>
+
+
+    <section id="final">
+      <div class="left">
+        <h1 class="contact-title">Contact Us</h1>
+        <p>We'd love to hear from you.</p>
+      </div>
+      <div class="right">
+        <form action="https://formsubmit.co/aetherlands@gmail.com" method="POST" id="contactForm" class="contact-form">
+          <div class="input">
+            <label>Name</label>
+            <input type="text" name="name" placeholder="Name" id="nameField">
+          </div>
+          <div class="input">
+            <label>Message</label>
+            <input type="text" name="message" placeholder="Message" id="messageField">
+          <div class="input">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Email" id="emailField">
+          </div>
+          <div class="spatial2"> </div>
+          <div class="input">
+            <label>Pick A Topic</label>
+            <select id="roleField" name="Role">
+              <option value="General">General</option>
+              <option value="Careers">Careers</option>
+              <option value="Support">Support</option>
+              <option value="Partnerships">Partnerships</option>
+              <option value="Media & Press">Media & Press</option>
+              <option value="Investors">Investors</option>
+            </select>
+          </div>
+          <input type="hidden" name="_gotcha" />
+          <div class="spatial"></div>
+          <div class="submit">
+            <input type="submit" value="Contact">
+            <input type="hidden" name="_captcha" value="false">
+          </div>
+        </form>
+        <div id="thankYouMessage">Chat Soon 👋</div>
+      </div>
+    </section>
+    
+    <footer class="footer">
+  <div class="footer__addr">
+    <img src="Images/GUIDEDfooter.png" alt="teka logo" class="footer_logo">
+        
+    <h2></h2>
+    
+    <address>
+          
+    </address>
+  </div>
+  
+  <ul class="footer__nav">
+    <li class="nav__item">
+      <h2 class="nav__title">Company</h2>
+
+      <ul class="nav__ul">
+        <li>
+          <a href="#">Blog</a>
+        </li>
+
+        <li>
+          <a href="#">Brand Kit</a>
+        </li>
+            
+        <li>
+          <a href="#">Press</a>
+        </li>
+
+        <li>
+          <a href="#">Careers</a>
+        </li>
+
+        <li>
+          <a href="#">Investor Portal</a>
+        </li>
+      </ul>
+    </li>
+    
+    <li class="nav__item nav__item--extra">
+      <h2 class="nav__title">Support</h2>
+      
+      <ul class="nav__ul nav__ul--extra">
+        <li>
+          <a href="#">Contact</a>
+        </li>
+        
+        <li>
+          <a href="#">FAQs</a>
+        </li>
+        
+        <li>
+          <a href="#">Security & Privacy</a>
+        </li>
+      </ul>
+    </li>
+    
+    <li class="nav__item">
+      <h2 class="nav__title">Trust</h2>
+      
+      <ul class="nav__ul">
+        <li>
+          <a href="#">Terms of Use</a>
+        </li>
+        
+        <li>
+          <a href="#">Privacy Policy</a>
+        </li>
+        
+        <li>
+          <a href="#">Cookie Notice</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <div class="legal">
+    <p>&copy; 2023 Teka Labs</p>
+    
+    <div class="legal__links">
+      <span>All Rights Reserved</span>
+    </div>
+  </div>
+</footer>
+
+  <script>
+    const smallScreenBreakpoint = 1200;
+    const tabletBreakpoint = 800;
+    const phoneBreakpoint = 420;
+    const bigImgPath = "Images/big/";
+    const smallImgPath = "Images/small/";
+    const midImgPath = "Images/mid/";
+    const winWidth = window.innerWidth;
+
+    const $form = document.getElementById("contactForm");
+    const $nameInput = document.getElementById('nameField');
+    const $emailInput = document.getElementById('emailField');
+    const $roleInput = document.getElementById('roleField');
+    const $messageInput = document.getElementById('messageField');
+    const $thankYouMessage = document.getElementById('thankYouMessage');
+    const $header = document.getElementById("header");
+    const $wordmark = document.getElementById("wordmark");
+    const $mark = document.getElementById("mark");
+    const $screens = document.getElementById("screens");
+    const $final = document.getElementById("final");
+    const $hero = document.getElementById("hero");
+    const $heroRightBg = document.getElementById("heroRightBg");
+    const $heroLeftBg = document.getElementById("heroLeftBg");
+    const $ui1 = document.getElementById("ui1");
+    const $ui2 = document.getElementById("ui2");
+    const $ui3 = document.getElementById("ui3");
+    const $ui4 = document.getElementById("ui4");
+    const $ui5 = document.getElementById("ui5");
+    const $screen1 = document.getElementById("screen1");
+    const $screen2 = document.getElementById("screen2");
+    const $screen3 = document.getElementById("screen3");
+    const $screen4 = document.getElementById("screen4");
+    const $section1 = document.getElementById("section1");
+    const $section2 = document.getElementById("section2");
+    const $section3 = document.getElementById("section3");
+    const $section4 = document.getElementById("section4");
+
+    const $heroHeight = $hero.offsetHeight;
+    const $heroScrollStart = 0;
+    const $heroScrollStartMove = $heroScrollStart + 150;
+    const $finalPosition = $final.offsetTop;
+    const $finalHeight = $final.offsetHeight;
+
+    let imgPath = bigImgPath;
+    if (winWidth <= tabletBreakpoint) {
+      imgPath = smallImgPath;
+    } else if (winWidth <= smallScreenBreakpoint) {
+      imgPath = midImgPath;
+    }
+
+    $screen1.children[0].src = `${imgPath}index.png`;
+    $screen2.children[0].src = `${imgPath}collections.png`;
+    $screen3.children[0].src = `${imgPath}apis.png`;
+    $screen4.children[0].src = `${imgPath}functions.png`;
+
+    window.addEventListener("scroll", () => {
+      const scrollPosition = window.scrollY;
+      const winWidth = window.innerWidth;
+      const $finalCalc = $finalPosition - ($finalHeight / 2);
+      const sectionPositionScale = (winWidth > smallScreenBreakpoint) ? .75 : 1;
+      const $section2Position = $section2.offsetTop - ($section2.offsetHeight * sectionPositionScale);
+      const $section3Position = $section3.offsetTop - ($section3.offsetHeight * sectionPositionScale);
+      const $section4Position = $section4.offsetTop - ($section4.offsetHeight * sectionPositionScale);
+
+      if (scrollPosition >= $heroScrollStart && scrollPosition <= $heroHeight) {
+        const $heroScrollCalc = (scrollPosition - $heroScrollStart) / ($heroHeight / 4);
+        const opacityValue = Math.max((1 - $heroScrollCalc).toFixed(2), 0);
+        $heroLeftBg.style.opacity = opacityValue;
+
+        if (winWidth > smallScreenBreakpoint) {
+          const translateY = Math.min(($heroScrollCalc * -100), 0);
+          $heroRightBg.style.opacity = opacityValue;
+          $hero.style.transform = `translateY(${translateY}%)`;
+        }
+      }
+      if (scrollPosition < $heroScrollStart) {
+        $heroLeftBg.style.opacity = 1;
+        if (winWidth > smallScreenBreakpoint) {
+          $hero.style.transform = `translateY(0)`;
+          $heroRightBg.style.opacity = 1;
+        }
+      }
+
+      if (scrollPosition >= $heroScrollStartMove && scrollPosition <= $heroHeight) {
+        const $heroScrollCalc = (scrollPosition - $heroScrollStartMove) / ($heroHeight - ($heroScrollStartMove * 1));
+        const translateY = Math.min(($heroScrollCalc * -100), 0);
+        const sizeDown = Math.max(100 - (translateY *-1), 75);
+
+        $wordmark.style.transform = `scale(${sizeDown}%)`;
+        $mark.style.transform = `scale(${sizeDown}%) rotate(${Math.min((1 - (100 - (translateY *-1)) / 100), 1)}turn)`;
+        $wordmark.classList.add("dark");
+
+        if (winWidth > smallScreenBreakpoint) {
+          $hero.style.transform = `translateY(${translateY}%)`;
+          $header.style.transform = `translateY(${Math.max(translateY, -25)}%)`;
+          $header.style.width = `${Math.min(50 + (translateY * -1), 100)}%`;
+          $ui1.style.transform = `translateY(${translateY * 4}px)`;
+          $ui2.style.transform = `translateX(${translateY * 1}px)`;
+          $ui3.style.transform = `translateX(${translateY * -3}px)`;
+          $ui4.style.transform = `translateX(${translateY * 1}px)`;
+          $ui5.style.transform = `translateY(${translateY * 8}px)`;
+        } else {
+          $hero.style.transform = `translateY(0)`;
+        }
+      }
+      if (scrollPosition < $heroScrollStartMove) {
+        $wordmark.style.transform = `scale(1)`;
+        $mark.style.transform = `scale(1) rotate(0)`;
+        $wordmark.classList.remove("dark");
+
+        if (winWidth > smallScreenBreakpoint) {
+          $hero.style.transform = `translateY(0)`;
+          $header.style.transform = `translateY(0)`;
+          $header.style.width = `50%`;
+          $ui1.style.transform = `translateY(0)`;
+          $ui2.style.transform = `translateX(0)`;
+          $ui3.style.transform = `translateX(0)`;
+          $ui4.style.transform = `translateY(0)`;
+          $ui5.style.transform = `translateY(0)`;
+        }
+      }
+      if (scrollPosition > $heroHeight) {
+        $wordmark.style.transform = `scale(0.75)`;
+        $mark.style.transform = `scale(0.75) rotate(1turn)`;
+        $wordmark.classList.add("dark");
+
+        if (winWidth > smallScreenBreakpoint) {       
+          $screens.style.transform = `translateY(0) translateX(0) scale(1)`;
+          $hero.style.transform = `translateY(-100%)`;
+          $header.style.transform = `translateY(-25%)`;
+          $header.style.width = `100%`;
+          $ui1.style.transform = `translateX(400px)`;
+          $ui2.style.transform = `translateX(-100px)`;
+          $ui3.style.transform = `translateX(300px)`;
+          $ui4.style.transform = `translateY(-800px)`; 
+          $ui5.style.transform = `translateY(-800px)`;
+        }
+      } else {
+        const $heroCalc = (scrollPosition / $heroHeight) * 100;
+        if ($heroCalc >= 0) {
+          const yScale = (winWidth > smallScreenBreakpoint) ? -10 : 
+          (winWidth > tabletBreakpoint) ? -30 : 
+          (winWidth > phoneBreakpoint) ? -20 : -10;
+          const translateY = Math.min(yScale + ($heroCalc), 0);
+          const translateX = Math.min(-25 + $heroCalc, 0);
+          const scaleValue = Math.min(50 + ($heroCalc * 2), 100);
+          $screens.style.bottom = `${translateY}%`;
+
+          if (winWidth > smallScreenBreakpoint) { 
+            $screens.style.transform = ` translateX(${translateX}%) scale(${scaleValue}%)`;
+          }
+        }
+      }
+
+      if (scrollPosition >= $section2Position) {
+        $screens.className = "section2";
+      }
+      if (scrollPosition >= $section3Position) {
+        $screens.className = "section3";
+      } 
+      if (scrollPosition >= $section4Position) {
+        $screens.className = "section4";
+      } 
+      if (scrollPosition < $section2Position) {
+        $screens.className = "section1";
+      }
+
+      if (scrollPosition > $finalCalc) {
+        const translateY = Math.min(scrollPosition - $finalCalc, $finalHeight);
+        $screens.style.transform = `translateY(${translateY}px)`;
+      } else if (scrollPosition > $heroHeight) {
+        $screens.style.transform = `translateY(0)`;
+        $screens.style.bottom = '0';
+      }
+
+      if (winWidth > smallScreenBreakpoint) {   
+        const translateY = Math.min(scrollPosition - $finalCalc, $finalHeight);
+        if (scrollPosition > ($finalPosition - $finalHeight)) {
+          $form.style.transform = `translateX(${Math.max((translateY / -10), -50)}%)`;
+        }
+      } else {
+        $form.style.transform = `translateX(0) translateY(-50px)`;
+      }
+    });
+
+    window.addEventListener("resize", () => {
+      const scrollPosition = window.scrollY;
+      const winWidth = window.innerWidth;
+
+      if (winWidth <= smallScreenBreakpoint) {
+        $header.style.cssText = '';
+        $form.style.transform = `translateX(0) translateY(-50px)`;
+        $screens.style.transform = `translateX(0) scale(1)`;
+      } else {
+        $form.style.transform = `translateX(-50%)`;
+        $screens.style.transform = `translateX(-25%) scale(0.5)`;
+      }
+
+      if (scrollPosition > $heroHeight && winWidth > smallScreenBreakpoint) {       
+        $hero.style.transform = `translateY(-100%)`;
+      }
+
+      let imgPath = bigImgPath;
+      if (winWidth <= tabletBreakpoint) {
+        imgPath = smallImgPath;
+      } else if (winWidth <= smallScreenBreakpoint) {
+        imgPath = midImgPath;
+      }
+
+      $screen1.children[0].src = `${imgPath}index.png`;
+      $screen2.children[0].src = `${imgPath}collections.png`;
+      $screen3.children[0].src = `${imgPath}apis.png`;
+      $screen4.children[0].src = `${imgPath}functions.png`;
+    });
+
+    function validateForm() {
+      var name = $nameInput.value;
+      var email = $emailInput.value;
+      var role = $roleInput.value;
+      var message = $messageInput.value;
+      if (name == "" || email == "" || role == "" || message == "") {
+        alert("Please fill in all the fields.");
+        return false;
+      }
+      if (!isValidEmail(email)) {
+        alert("Please enter a valid email address.");
+        emailInput.focus();
+        return false;
+      }
+      return true;
+    }
+
+    function hasUrlParameter(parameterName) {
+      const currentUrl = window.location.href;
+      if (currentUrl.indexOf("?") === -1) {
+        return false;
+      }
+      const queryString = currentUrl.split("?")[1];
+      const params = new URLSearchParams(queryString);
+      if (!params.has(parameterName)){
+        return false;
+      } else {
+        return params.get(parameterName);
+      }
+    }
+
+    const invalidParam = hasUrlParameter("invalid");
+    if (invalidParam) {
+      window.addEventListener('load', () => {
+        $final.scrollIntoView();
+        let alertText = "";
+
+        if (invalidParam == "email") {
+          $emailInput.focus();
+          alertText = "Please enter a valid email address.";
+        } else if (invalidParam == "name") {
+          $nameInput.focus();
+          alertText = "Please enter your name.";
+        } else if (invalidParam == "message") {
+            $messageInput.focus();
+            alertText = "Please enter a message.";
+          }
+
+        if (alertText) {
+          setTimeout(function() { 
+            alert(alertText)
+          }, 100);
+        }
+      });
+    } 
+
+    const form = document.getElementById("contactForm");
+
+form.addEventListener("submit", function (event) {
+  event.preventDefault(); // Prevent the default form submission behavior
+
+  // Display the "Thank you" message
+  thankYouMessage.style.opacity = "1"; // Set opacity to fully visible
+
+  // Reset the form after 3 seconds (3000 milliseconds)
+  setTimeout(function () {
+    form.reset();
+    thankYouMessage.style.opacity = "0"; // Set opacity to fully transparent
+  }, 3000);
+
+    // Additional code to handle form submission to the server
+    const formData = new FormData(form);
+    fetch(form.action, {
+      method: "POST",
+      body: formData
+    })
+    .then(response => {
+      // Handle the response from the server if needed
+      console.log("Form submission successful!");
+    })
+    .catch(error => {
+      // Handle errors if the form submission fails
+      console.error("Form submission error:", error);
+    });
+  });
+
+  document.getElementById("contactForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent the default form submission behavior
+
+      // Reset the form
+      document.getElementById("contactForm").reset();
+
+      function updateUIPositions() {
+  const winWidth = window.innerWidth;
+
+  if (winWidth > smallScreenBreakpoint) {
+    // Calculate the position of UI2
+    const ui2Position = -100; // Update this based on your design
+    const ui2TranslateX = Math.min(0, ui2Position + 100); // Ensure it's not off-screen
+
+    // Calculate the shared vertical translation for UI4 and UI5
+    const sharedVerticalTranslate = -800;
+
+    // Apply transformations to UI cards
+    $screens.style.transform = `translateY(0) translateX(0) scale(1)`;
+    $hero.style.transform = `translateY(-100%)`;
+    $header.style.transform = `translateY(-25%)`;
+    $ui1.style.transform = `translateY(400px) translateX(${ui2TranslateX}px)`;
+    $ui2.style.transform = `translateX(${ui2Position}px)`;
+    $ui3.style.transform = `translateX(${ui2TranslateX + 400}px)`;
+    $ui4.style.transform = `translateY(${sharedVerticalTranslate}px) translateX(${ui2TranslateX}px)`;
+    $ui5.style.transform = `translateY(${sharedVerticalTranslate}px) translateX(${ui2TranslateX}px)`;
+  } else {
+    // Reset styles for small screens
+    $screens.style.transform = '';
+    $hero.style.transform = '';
+    $header.style.transform = '';
+    $ui1.style.transform = '';
+    $ui2.style.transform = '';
+    $ui3.style.transform = '';
+    $ui4.style.transform = '';
+    $ui5.style.transform = '';
+  }
+}
+
+// Initial call to set UI positions
+updateUIPositions();
+
+// Call the updateUIPositions function on window resize
+window.addEventListener('resize', updateUIPositions);
+      
+    });
+  </script>
+
+</body>
+</html>

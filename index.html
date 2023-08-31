@@ -47,8 +47,55 @@
         position: fixed; /* Set the position to fixed */
         top: 60px; /* Adjust the top value according to your design */
         left: 40px; /* Adjust the left value according to your design */
+        z-index: 1;
       }
 
+      .guided-logo:hover {
+        cursor: pointer;
+        opacity: .8;
+      }
+
+      .login-btn {
+        background-color: #3C3044;
+        color: #FFFFFF;
+        border-radius: 8px;
+        padding: 13px 20px;
+        font-weight: 590;
+        position: fixed; /* Set the position to fixed */
+        top: 60px; /* Adjust the top value according to your design */
+        right: 40px; /* Adjust the left value according to your design */
+        border-width: 3px;
+        border-color: black;
+        border-style: solid;
+        z-index: 1;
+        margin-right: 30px;
+      }
+
+      .login-btn:hover {
+        cursor: pointer;
+        opacity: .8;
+      }
+
+      .get-started-btn {
+        background-color: #FFFFFF;
+        color: #141616;
+        border-radius: 8px;
+        padding: 13px 20px;
+        font-weight: 590;
+        position: fixed; /* Set the position to fixed */
+        top: 60px; /* Adjust the top value according to your design */
+        right: 180px; /* Adjust the left value according to your design */
+        border-width: 3px;
+        border-color: black;
+        border-style: solid;
+        z-index: 1;
+        margin-right: 30px;
+      }
+
+      .get-started-btn:hover {
+        cursor: pointer;
+        opacity: .8;
+      }
 
       a {
         color: #141616;
@@ -189,17 +236,17 @@
   color: #2f2f2f;
 }
 
-.contact-title {
-  padding-top: 100px;
-        font-family: Inter-Bold.ttf, Arial;
-        font-size: 107.193px;
-        -webkit-text-fill-color: transparent;
-        -webkit-text-stroke-width: 2px;
-        -webkit-text-stroke-color: #000000;
-        white-space: nowrap; /* Add this line */
-        text-align: left; /* Add this line */
-        z-index: 111;
-}
+  .contact-title {
+    padding-top: 100px;
+    font-family: "Inter-Bold.ttf", Arial;
+    font-size: 107.193px;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #000000;
+    white-space: nowrap; /* Add this line */
+    text-align: left; /* Add this line */
+    z-index: 111;
+  }
 
 @media screen and (min-width: 24.375em) {
   .legal .legal__links {
@@ -603,13 +650,31 @@
           justify-content: center;
           align-items: center;
         }
-      
+      }
 
       @media (max-width: 1000px) {
         form {
           width: 80%;
           overflow-x: hidden;
         }
+
+        .guided-logo {
+          margin-left: 10px;
+        }
+
+        .login-btn {
+          top: 130px;
+          font-weight: 800;
+          white-space: nowrap; /* Add this line */
+          padding-left: 20px;
+        }
+
+        .get-started-btn {
+          top: 130px;
+          font-weight: 800;
+          white-space: nowrap; /* Add this line */
+        }
+
         #screens {
           bottom: -20%;
           transform: translateX(0) scale(1);
@@ -632,6 +697,24 @@
         }
         h1 {
           font-size: 36px;
+        }
+
+        .guided-logo {
+          margin-left: 10px;
+        }
+
+        .login-btn {
+          top: 130px;
+          font-weight: 800;
+          white-space: nowrap; /* Add this line */
+          margin-right: 0px;
+        }
+
+        .get-started-btn {
+          top: 130px;
+          font-weight: 800;
+          white-space: nowrap; /* Add this line */
+          margin-right: 0px;
         }
 
         .intro-title {
@@ -695,8 +778,11 @@
     
     <section id="hero">
       <div class="left">
-        <img src="Images/GUIDED.png" alt="teka logo" class="guided-logo">      
-
+        <img src="Images/GUIDED.png" alt="teka logo" class="guided-logo">  
+        <div class="header-btns">
+          <button class="get-started-btn">Get Started</button>    
+          <button class="login-btn">Login</button>    
+        </div>
         <h1 class="intro-title">You <br> Are Here <br> To Learn</h1>
         <div id="heroLeftBg" class="hero-bg"></div>
       </div>

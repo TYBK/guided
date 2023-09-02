@@ -9,6 +9,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&display=swap" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Our stylesheet -->
         <style>
             html, body {
@@ -38,7 +39,7 @@
     }
 
 #content_container {
-    width: 30%;
+    padding: 40px;
     height: 70%;
 }
 
@@ -188,11 +189,14 @@ input {
     font-family: Montserrat;
     font-weight: 500;
     color: #000000;
+    font-size: 11px;
 }
 
-.sign-up-directory:hover {
-    cursor: pointer;
-    opacity: .8;
+.sign-up-directory-link {
+    font-family: Montserrat;
+    font-weight: 500;
+    color: #000000;
+    font-size: 11px;
 }
 
 .close-btn {
@@ -212,9 +216,7 @@ input {
 
 /* styles for mobile view */
 @media (max-width: 768px) {
-    #content_container {
 
-    }
 }
 
         </style>
@@ -236,7 +238,7 @@ input {
 
                             <button class="login-btn" onclick="login()">Login</button>
                             <br>
-                            <span class="sign-up-directory">Don't have an account? </span><a href="sign-up.html">Sign Up</a>
+                            <span class="sign-up-directory">Don't have an account? </span><a class="sign-up-directory-link" href="sign-up.html">Sign Up</a>
                         <a href="index.html">
                             <button class="close-btn">Close</button>
                           </a>

@@ -168,6 +168,20 @@ input {
     opacity: .8;
 }
 
+.forgot-password-link {
+    font-family: Montserrat;
+    font-weight: 500;
+    color: #000000;
+    font-size: 11px;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.forgot-password-link:hover {
+    cursor: pointer;
+    opacity: .8;
+}
+
 .login-btn {
     background-color: #141616;
     color: #FFFFFF;
@@ -179,6 +193,7 @@ input {
     /* center the button */
     margin: 0 auto;
     display: block;
+    margin-top: 20px;
 }
 
 .login-btn:hover {
@@ -236,11 +251,11 @@ input {
                     <div id="form_content_inner_container">
                         <input type="email" id="email" placeholder="Email">
                         <input type="password" id="password" placeholder="Password">
-
-                            <button class="login-btn" onclick="login()">Login</button>
+                        <a class="forgot-password-link" href="forgot-password.html">Forgot Password?</a>
+                            <button class="login-btn" onclick="login()">Sign In</button>
                             <br>
                             <span class="sign-up-directory">Don't have an account? </span><a class="sign-up-directory-link" href="sign-up.html">Sign Up</a>
-                        <a href="index.html">
+                            <a href="index.html">
                             <button class="close-btn">Close</button>
                           </a>
                     </div>

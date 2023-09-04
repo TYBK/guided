@@ -3,139 +3,57 @@
 <head>
     <meta charset="utf-8">
     <title>Dashboard</title>
-    <style>
-/* CSS styles for the dashboard */
-body {
-            font-family: Arial, sans-serif;
-            background-color: #C7B6D2;
-            text-align: center;
-        }
-
-        .container {
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #FFFFFF;
-            border-radius: 8px;
-            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            color: #333;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        .form-group input[type="text"],
-        .form-group input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        .error-message {
-            color: red;
-            margin-top: 10px;
-        }
-
-        .button {
-            background-color: #333;
-            color: #FFF;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .button:hover {
-            background-color: #555;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
 <body>
-    <div class="header">
-        <h1>Welcome to Your Dashboard</h1>
-        <button class="button" onclick="logout()">Logout</button>
-        <button class="button" onclick="deleteAccount()">Delete Account</button>
-    </div>
-    <div class="container">
-        <h2>Your Account</h2>
-        <div class="account-details">
-            <img id="profile-image" src="default-profile.jpg" alt="Profile Image">
-            <div>
-                <p>Name: <span id="user-name">John Doe</span></p>
-                <p>Email: <span id="user-email">johndoe@example.com</span></p>
-            </div>
-        </div>
-        <button class="button" onclick="editProfile()">Edit Profile</button>
-    </div>
+    <h1>Welcome to Your Dashboard</h1>
+    <button id="logout-button">Logout</button>
+    <button id="delete-account-button">Delete Account</button>
 
+    <!-- Firebase scripts should be imported before initialization -->
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+
+    <!-- Import the Firebase configuration from index.js -->
+    <script src="js/config/config.js"></script>
+    <script src="index.js"></script>
+
+    
     <script>
-        // Initialize Firebase
-        const firebaseConfig = {
-            // Your Firebase configuration here
-        };
+        // Initialize Firebase using the imported configuration
         firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const user = auth.currentUser; // Get the currently logged in user
-    
-// Logout function
-function logout() {
-    auth.signOut()
-        .then(function () {
-            // Redirect to the login page
-            window.location.href = 'login.html'; // Change 'login.html' to the correct login page URL
-        })
-        .catch(function (error) {
-            console.error(error);
-        });
-}
-    
-// Delete Account function
-function deleteAccount() {
-    if (confirm("Are you sure you want to delete your account?")) {
-        user.delete()
-            .then(function () {
-                // Redirect to the login page after account deletion
-                window.location.href = 'login.html';
-            })
-            .catch(function (error) {
-                console.error(error);
-                alert("Error deleting account: " + error.message);
-            });
-    }
-}
-
-        // Edit Profile function (You can implement this to allow users to edit their profile)
-        function editProfile() {
-            // Implement the logic to allow users to edit their profile (e.g., name and profile image)
-            // You may use a modal or a separate page for this purpose.
-        }
-
-        // Update user details (name and email) based on Firebase user object
-        if (user) {
-            document.getElementById('user-name').textContent = user.displayName || 'John Doe';
-            document.getElementById('user-email').textContent = user.email || 'johndoe@example.com';
-            if (user.photoURL) {
-                document.getElementById('profile-image').src = user.photoURL;
-            }
-        }
     </script>
-      <script src="index.js"></script>
+    <script>
+
+        // Logout button click event
+        const logoutButton = document.getElementById('logout-button');
+        logoutButton.addEventListener('click', () => {
+            auth.signOut()
+                .then(() => {
+                    window.location.href = 'sign-in.html'; // Redirect to the login page
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        });
+
+        // Delete account button click event
+        const deleteAccountButton = document.getElementById('delete-account-button');
+        deleteAccountButton.addEventListener('click', () => {
+            const user = auth.currentUser;
+            if (user) {
+                if (confirm("Are you sure you want to delete your account?")) {
+                    user.delete()
+                        .then(() => {
+                            window.location.href = 'sign-in.html'; // Redirect to the login page after account deletion
+                        })
+                        .catch(error => {
+                            console.error(error);
+                            alert("Error deleting account: " + error.message);
+                        });
+                }
+            }
+        });
+    </script>
 </body>
 </html>

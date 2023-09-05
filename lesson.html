@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Course Interface with Notes</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <style>
+/* Reset some default styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #C7B6D2;
+}
+
+.guided-logo {
+    margin-left: 30px;
+        width: 200px;
+        position: fixed; /* Set the position to fixed */
+        top: 60px; /* Adjust the top value according to your design */
+    }
+
+    #content_container {
+    padding: 40px;
+    height: 70%;
+}
+
+h1 {
+    text-align: center;
+    font-size: 24px;
+    margin: 40px 0 40px 0; /* Add margin to create space below the logo */
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tab-content {
+    display: none;
+    padding: 20px;
+    background-color: transparent;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.active-tab {
+    display: block;
+}
+
+h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+button {
+    margin-right: 10px;
+    background-color: #141616;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+textarea {
+    height: 300px;
+    width: calc(100% - 20px); /* Adjusted width to account for left and right spacing */
+    margin: 0;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    padding: 10px;
+    margin-left: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: #000000;
+    box-sizing: border-box;
+}
+
+.home-link {
+    font-weight: 500;
+    color: blue;
+    text-decoration: underline;
+}
+
+
+.next-btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.progress {
+    background-color: #FFFFFF;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    height: 20px;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.progress-bar {
+    background-color: #141616;
+    height: 100%;
+    width: 0;
+    border-radius: 6px;
+}
+
+a {
+    color: #000000;
+    text-decoration: none;
+}
+
+a:hover {
+    opacity: 0.8;
+}
+
+    </style>
+</head>
+<body>
+    <a href="index.html">
+        <img src="Images/GUIDED.png" alt="teka logo" class="guided-logo">
+      </a>
+      <div id="content_container"></div>
+    <h1>Self Authoring Course</h1>
+    
+    <!-- Tab navigation buttons -->
+    <div>
+        <div class="next-btns">
+            <button id="prev-button">Previous</button>
+            <button id="next-button">Next</button>
+        </div>
+        <div class="progress">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+    </div>
+
+    <!-- Tab content -->
+    <div class="tab-content active-tab" id="tab1">
+        <h2>Lesson 1: Introduction</h2>
+        <p>Welcome to the course! This is the introduction lesson.</p>
+        <textarea id="notes-lesson1"></textarea>
+
+    </div>
+    <div class="tab-content" id="tab2">
+        <h2>Lesson 2: Basics</h2>
+        <p>In this lesson, you will learn the basics.</p>
+        <textarea id="notes-lesson2"></textarea>
+
+    </div>
+    <div class="tab-content" id="tab3">
+        <h2>Lesson 3: Intermediates</h2>
+        <p>In this lesson, you will learn the intermediates.</p>
+        <textarea id="notes-lesson3"></textarea>
+
+    </div>
+    <div class="tab-content" id="tab4">
+        <h2>Lesson 4: Mastery</h2>
+        <p>In this lesson, you will learn mastery.</p>
+        <textarea id="notes-lesson4"></textarea>
+
+    </div>
+    <div class="tab-content" id="tab5">
+        <h2>Finished: Congratulations</h2>
+        <p>You should be proud!</p>
+        <p>Back to: <a href="dash.html" class="home-link">Home</a> </p>
+    </div>
+    <!-- Add more lessons and notes fields as needed -->
+
+    <script>
+        const tabButtons = document.querySelectorAll('[id^="tab"]');
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+        const reviewAllButton = document.getElementById('review-all-button');
+
+        let currentTab = 0;
+
+        // Initialize the first tab
+        showTab(currentTab);
+
+        // Function to display the current tab
+        function showTab(n) {
+            tabButtons.forEach((tabButton, index) => {
+                if (index === n) {
+                    tabButton.classList.add('active-tab');
+                } else {
+                    tabButton.classList.remove('active-tab');
+                }
+            });
+
+            prevButton.disabled = n === 0;
+            nextButton.disabled = n === tabButtons.length - 1;
+
+            // Load saved notes for the current lesson
+            const notesField = document.getElementById(`notes-lesson${n + 1}`);
+            notesField.value = getSavedNotes(n);
+        }
+
+        // Event listener for Previous button
+        prevButton.addEventListener('click', () => {
+            if (currentTab > 0) {
+                currentTab--;
+                showTab(currentTab);
+            }
+        });
+
+        // Event listener for Next button
+        nextButton.addEventListener('click', () => {
+            if (currentTab < tabButtons.length - 1) {
+                currentTab++;
+                showTab(currentTab);
+            }
+        });
+
+        // Function to save notes for a lesson
+        function saveNotes(lessonIndex, notes) {
+            localStorage.setItem(`notes-lesson${lessonIndex + 1}`, notes);
+        }
+
+        // Function to get saved notes for a lesson
+        function getSavedNotes(lessonIndex) {
+            return localStorage.getItem(`notes-lesson${lessonIndex + 1}`) || '';
+        }
+
+        // Event listener for notes fields
+        tabButtons.forEach((tabButton, index) => {
+            const notesField = document.getElementById(`notes-lesson${index + 1}`);
+            notesField.addEventListener('input', () => {
+                saveNotes(index, notesField.value);
+            });
+        });
+    </script>
+    <script src="index.js"></script>
+</body>
+</html>

@@ -4,11 +4,60 @@
     <meta charset="utf-8">
     <title>Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #C7B6D2;
+            padding: 40px;
+        }
+        /* Basic styling for the thumbnail */
+        .course-thumbnail {
+            display: inline-block;
+            width: 200px; /* Set the width of the thumbnail */
+            height: 150px; /* Set the height of the thumbnail */
+            background-color: #ffffff; /* Set the background color */
+            border: 1px solid #ddd; /* Add a border */
+            border-radius: 5px; /* Add border radius for rounded corners */
+            text-align: center; /* Center text horizontally */
+            padding: 10px; /* Add padding */
+            margin: 10px; /* Add margin around the thumbnail */
+            cursor: pointer; /* Add a pointer cursor to indicate it's clickable */
+            text-decoration: none; /* Remove underline */
+            color: #333; /* Set text color */
+            /* add shadow */
+            box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Style for the course title */
+        .course-title {
+            font-size: 16px; /* Set font size */
+        }
+
+        /* Style for the course description */
+        .course-description {
+            font-size: 12px; /* Set font size */
+            color: #777; /* Set text color */
+        }
+    </style>
 </head>
 <body>
     <h1>Welcome to Your Dashboard</h1>
     <button id="logout-button">Logout</button>
     <button id="delete-account-button">Delete Account</button>
+    <h1>Courses</h1>
+    
+    <!-- Create a course thumbnail with a link -->
+    <a href="lesson.html" class="course-thumbnail">
+        <div class="course-title">Self Authoring Course</div>
+    </a>
+    <div class="course-description">Description of the course goes here.</div>
+    <a href="lesson.html" class="course-thumbnail">
+        <div class="course-title">Free Course</div>
+    </a>
+    <div class="course-description">Description of the course goes here.</div>
+
 
     <!-- Firebase scripts should be imported before initialization -->
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
@@ -18,13 +67,11 @@
     <script src="js/config/config.js"></script>
     <script src="index.js"></script>
 
-    
     <script>
         // Initialize Firebase using the imported configuration
         firebase.initializeApp(firebaseConfig);
     </script>
     <script>
-
         // Logout button click event
         const logoutButton = document.getElementById('logout-button');
         logoutButton.addEventListener('click', () => {

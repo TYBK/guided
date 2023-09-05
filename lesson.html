@@ -107,6 +107,7 @@ textarea {
     margin-left: 20px;
     margin-right: 20px;
     margin-bottom: 20px;
+    width: 160px; /* Add a fixed width to maintain space */
 }
 
 .progress {
@@ -213,6 +214,13 @@ a:hover {
     
             prevButton.disabled = n === 0;
             nextButton.disabled = n === totalTabs - 1;
+
+            // Hide the "Previous" button on the first tab
+        prevButton.style.display = n === 0 ? 'none' : 'block';
+
+        // Hide the "Next" button on the last tab
+        nextButton.style.display = n === totalTabs - 1 ? 'none' : 'block';
+
     
             // Calculate the width of the progress bar as a percentage
             const progressWidth = ((n + 1) / totalTabs) * 100;

@@ -108,6 +108,7 @@ textarea {
     margin-right: 20px;
     margin-bottom: 20px;
     width: 160px; /* Add a fixed width to maintain space */
+    /* center the buttons */
 }
 
 .progress {
@@ -147,10 +148,6 @@ a:hover {
     
     <!-- Tab navigation buttons -->
     <div>
-        <div class="next-btns">
-            <button id="prev-button">Previous</button>
-            <button id="next-button">Next</button>
-        </div>
         <div class="progress">
             <div class="progress-bar" id="progress-bar"></div>
         </div>
@@ -187,6 +184,11 @@ a:hover {
         <p>Back to: <a href="dash.html" class="home-link">Home</a> </p>
     </div>
     <!-- Add more lessons and notes fields as needed -->
+
+    <div class="next-btns">
+        <button id="prev-button">Previous</button>
+        <button id="next-button">Next</button>
+    </div>
 
     <script>
         const tabButtons = document.querySelectorAll('[id^="tab"]');

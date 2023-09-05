@@ -192,13 +192,16 @@ a:hover {
         const prevButton = document.getElementById('prev-button');
         const nextButton = document.getElementById('next-button');
         const reviewAllButton = document.getElementById('review-all-button');
-
+        const progressBar = document.getElementById('progress-bar'); // Get the progress bar element
+    
+        const totalTabs = tabButtons.length; // Get the total number of tabs
+    
         let currentTab = 0;
-
+    
         // Initialize the first tab
         showTab(currentTab);
-
-        // Function to display the current tab
+    
+        // Function to display the current tab and update the progress bar
         function showTab(n) {
             tabButtons.forEach((tabButton, index) => {
                 if (index === n) {
@@ -207,15 +210,19 @@ a:hover {
                     tabButton.classList.remove('active-tab');
                 }
             });
-
+    
             prevButton.disabled = n === 0;
-            nextButton.disabled = n === tabButtons.length - 1;
-
+            nextButton.disabled = n === totalTabs - 1;
+    
+            // Calculate the width of the progress bar as a percentage
+            const progressWidth = ((n + 1) / totalTabs) * 100;
+            progressBar.style.width = `${progressWidth}%`;
+    
             // Load saved notes for the current lesson
             const notesField = document.getElementById(`notes-lesson${n + 1}`);
             notesField.value = getSavedNotes(n);
         }
-
+    
         // Event listener for Previous button
         prevButton.addEventListener('click', () => {
             if (currentTab > 0) {
@@ -223,25 +230,25 @@ a:hover {
                 showTab(currentTab);
             }
         });
-
+    
         // Event listener for Next button
         nextButton.addEventListener('click', () => {
-            if (currentTab < tabButtons.length - 1) {
+            if (currentTab < totalTabs - 1) {
                 currentTab++;
                 showTab(currentTab);
             }
         });
-
+    
         // Function to save notes for a lesson
         function saveNotes(lessonIndex, notes) {
             localStorage.setItem(`notes-lesson${lessonIndex + 1}`, notes);
         }
-
+    
         // Function to get saved notes for a lesson
         function getSavedNotes(lessonIndex) {
             return localStorage.getItem(`notes-lesson${lessonIndex + 1}`) || '';
         }
-
+    
         // Event listener for notes fields
         tabButtons.forEach((tabButton, index) => {
             const notesField = document.getElementById(`notes-lesson${index + 1}`);
@@ -250,6 +257,7 @@ a:hover {
             });
         });
     </script>
+    
     <script src="index.js"></script>
 </body>
 </html>

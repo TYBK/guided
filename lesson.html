@@ -224,14 +224,19 @@ a:hover {
         nextButton.style.display = n === totalTabs - 1 ? 'none' : 'block';
 
     
-            // Calculate the width of the progress bar as a percentage
-            const progressWidth = ((n + 1) / totalTabs) * 100;
-            progressBar.style.width = `${progressWidth}%`;
-    
-            // Load saved notes for the current lesson
-            const notesField = document.getElementById(`notes-lesson${n + 1}`);
-            notesField.value = getSavedNotes(n);
-        }
+ // Calculate the width of the progress bar as a percentage
+ if (n === 0) {
+        // If the current tab is tab 1, set the progress bar to 0%
+        progressBar.style.width = '0%';
+    } else {
+        const progressWidth = ((n + 1) / totalTabs) * 100;
+        progressBar.style.width = `${progressWidth}%`;
+    }
+
+    // Load saved notes for the current lesson
+    const notesField = document.getElementById(`notes-lesson${n + 1}`);
+    notesField.value = getSavedNotes(n);
+}
     
         // Event listener for Previous button
         prevButton.addEventListener('click', () => {

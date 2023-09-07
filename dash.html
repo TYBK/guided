@@ -10,37 +10,169 @@
             padding: 0;
             font-family: 'Montserrat', sans-serif;
             background-color: #C7B6D2;
-            padding: 40px;
+            overflow-x: hidden;
         }
 
         .guided-logo {
-    margin-left: 0px;
+        margin-left: 0px;
         width: 200px;
         position: fixed; /* Set the position to fixed */
         top: 70px; /* Adjust the top value according to your design */
         position: absolute;
+        margin-left: 40px;
     }
+
+    .slider {
+  margin-top: 150px;
+  width: 100%;
+  text-align: center;
+  overflow: hidden;
+  /* scrollbar color */
+  scrollbar-color: #ff0000 #0000ff;
+  padding-left: 50px;
+}
+
+.slides {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Updated styles for each slide anchor tag */
+.slide-1, .slide-2, .slide-3, .slide-4, .slide-5 {
+    flex-shrink: 0;
+    width: 330px;
+    height: 400px;
+    margin-right: 100px;
+    border-radius: 10px;
+    background: #eee;
+    scroll-snap-align: start;
+    cursor: pointer;
+    transition: transform .3s, opacity 0.2s; /* Decreased transition duration */
+    opacity: 1; /* Initial opacity */
+    text-align: center; /* Center content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+    text-decoration: none; /* Remove underlines from anchor tags */
+    color: #000000;
+        will-change: transform, opacity;
+}
+
+
+/* Updated styles for hover effect */
+.slide-1:hover, .slide-2:hover, .slide-3:hover, .slide-4:hover, .slide-5:hover {
+    transform: scale(0.9); /* Adjust the scale on hover if desired */
+    opacity: 0.8; /* Reduce opacity on hover */
+}
+
+
+
+.slides::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.slides::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 10px;
+}
+.slides::-webkit-scrollbar-track {
+  background: transparent;
+}
+.slides > div {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  width: 400px;
+  height: 500px;
+  margin-right: 100px;
+  border-radius: 10px;
+  background: #eee;
+  transform-origin: center center;
+  transform: scale(1);
+  transition: transform 0.5s;
+  position: relative;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+
+}
+
+.slides > div:target {
+/*   transform: scale(0.8); */
+}
+.author-info {
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  padding: 0.75rem;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
+}
+.author-info a {
+  color: white;
+}
+
+.slider > a {
+  display: inline-flex;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: white;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin: 0 0 0.5rem 0;
+  position: relative;
+}
+.slider > a:active {
+  top: 1px;
+}
+.slider > a:focus {
+  background: #000;
+}
+
+/* Don't need button navigation */
+@supports (scroll-snap-type) {
+  .slider > a {
+    display: none;
+  }
+}
+
 
     #content_container {
     padding: 40px;
-    height: 70%;
-}
+    margin-top: 50px;
+    display: flex;
+            overflow-x: auto; /* Enable horizontal scrolling */
+            white-space: nowrap; /* Prevent cards from wrapping to the next line */
+    }
+
 
         /* thumbnail designs */
 
+        /* Ensure each card has some space around it */
         .card {
-  border-radius: 16px;
-  margin: 0 auto;
-  width: 400px;
-  max-width: 100%;
-  box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
-    0px 5px 8px 0px rgba(0, 0, 0, 0.14),
-    0px 1px 14px 0px rgba(0, 0, 0, 0.12);
-  overflow: hidden;
-  background-image: url(https://images.unsplash.com/photo-1437915219556-8c287594737a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3540&q=80);
-  background-size: cover;
-  text-decoration: none; 
-}
+            border-radius: 16px;
+            margin-right: 20px; /* Adjust as needed to create space between cards */
+            width: 400px;
+            height: 400px;
+            box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+              0px 5px 8px 0px rgba(0, 0, 0, 0.14),
+              0px 1px 14px 0px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+            background-image: url(https://images.unsplash.com/photo-1437915219556-8c287594737a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3540&q=80);
+            background-size: cover;
+            text-decoration: none; 
+            color: #000000;
+        }
 
 .info {
   position: relative;
@@ -81,14 +213,6 @@
   font-weight: 500;
 }
 
-.course-description {
-  margin: 0;
-  padding: 0 24px 24px;
-  font-size: 18px;
-  line-height: 1.5;
-  text-align: center;
-}
-
         h1 {
   margin-bottom: 0.5em;
   color: black;
@@ -124,6 +248,7 @@ p {
   height: 80px;
   width: 80px;
   border-radius: 80px;
+  margin-right: 40px;
 }
 
 .dropdown {
@@ -340,40 +465,49 @@ p {
           <a id="logout-button">Logout</a>
         </div>
       </div>
+
+      <div id="content_container"></div>
+      
+
+<div class="slider">
+    <div class="slides">
+        <a href="lesson.html" class="slide-1"> <!-- Updated anchor tag -->
+            1
+        </a>
+        <a href="lesson.html" class="slide-2"> <!-- Updated anchor tag -->
+            2
+        </a>
+        <a href="lesson.html" class="slide-3"> <!-- Updated anchor tag -->
+            3
+        </a>
+        <a href="lesson.html" class="slide-4">      <!-- Updated anchor tag -->
+            4
+        </a>
+    </div>
+</div>
       
       <div id="content_container"></div>
 
-    <h1>Courses</h1>
-    <br>
-    
-<div class="card">
-    <a href="lesson.html" class="card">
-        <div class='card'>
-          <div class='info'>
-            <h1 class='title'>Self Authoring</h1>
-          </div>
+      <div class="slider">
+        <div class="slides">
+            <a href="lesson.html" class="slide-1"> <!-- Updated anchor tag -->
+                1
+            </a>
+            <a href="lesson.html" class="slide-2"> <!-- Updated anchor tag -->
+                2
+            </a>
+            <a href="lesson.html" class="slide-3"> <!-- Updated anchor tag -->
+                3
+            </a>
+            <a href="lesson.html" class="slide-4">      <!-- Updated anchor tag -->
+                4
+            </a>
         </div>
-    </a>
-</div>
-<br>
-<div class="course-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius esse corporis, velit porro impedit laudantium accusamus! Id velit, illum magni rem mollitia blanditiis iste maiores optio ipsa, est dolorem fugit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius esse corporis, velit porro impedit laudantium accusamus! Id velit, illum magni rem mollitia blanditiis iste maiores optio ipsa, est dolorem fugit.</div>
-<br>
+    </div>
 
-<div class="card">
-    <a href="lesson.html" class="card">
-        <div class='card'>
-          <div class='info'>
-            <h1 class='title'>Self Authoring</h1>
-          </div>
-        </div>
-    </a>
-</div>
-<br>
-<div class="course-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius esse corporis, velit porro impedit laudantium accusamus! Id velit, illum magni rem mollitia blanditiis iste maiores optio ipsa, est dolorem fugit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius esse corporis, velit porro impedit laudantium accusamus! Id velit, illum magni rem mollitia blanditiis iste maiores optio ipsa, est dolorem fugit.</div>
-<br>
-      <br>
+    <div id="content_container"></div>
 
-      <div class="course-description">Pardon the dust 💗</div>
+
       <main>
 
     <!-- footer -->

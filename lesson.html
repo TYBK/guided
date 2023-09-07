@@ -128,6 +128,41 @@ textarea {
     border-radius: 6px;
 }
 
+/* Add these styles to your existing CSS */
+
+.milestones {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    height: 20px;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.milestone {
+    position: absolute;
+    transform: translateX(-50%);
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 0;
+    margin-left: 40px;
+}
+
+.milestone-percentage {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.milestone-subtitle {
+    font-size: 10px;
+    color: #666; /* Subtitle text color */
+}
+
+
 a {
     color: #000000;
     text-decoration: none;
@@ -136,6 +171,13 @@ a {
 a:hover {
     opacity: 0.8;
 }
+
+@media (max-width: 768px) {
+    .milestone-subtitle {
+        display: none;
+    }
+    }
+
 
     </style>
 </head>
@@ -146,12 +188,36 @@ a:hover {
       <div id="content_container"></div>
     <h1>Self Authoring Course</h1>
     
-    <!-- Tab navigation buttons -->
-    <div>
-        <div class="progress">
-            <div class="progress-bar" id="progress-bar"></div>
+      <!-- Tab navigation buttons -->
+<div>
+    <div class="progress">
+        <div class="progress-bar" id="progress-bar"></div>
+        <!-- Add milestones and subtitles here -->
+        <div class="milestones" id="milestones">
+            <div class="milestone" style="left: 0%;">
+                <div class="milestone-percentage">0%</div>
+                <div class="milestone-subtitle">Welcome 👏</div>
+            </div>
+            <div class="milestone" style="left: 20%;">
+                <div class="milestone-percentage">20%</div>
+                <div class="milestone-subtitle">Important Marker</div>
+            </div>
+            <div class="milestone" style="left: 40%;">
+                <div class="milestone-percentage">40%</div>
+                <div class="milestone-subtitle">Another Milestone</div>
+            </div>
+            <div class="milestone" style="left: 60%;">
+                <div class="milestone-percentage">60%</div>
+                <div class="milestone-subtitle">Quiz Time!</div>
+            </div>
+            <div class="milestone" style="left: 80%;">
+                <div class="milestone-percentage">80%</div>
+                <div class="milestone-subtitle">Almost There</div>
+            </div>
         </div>
     </div>
+</div>
+
 
     <!-- Tab content -->
     <div class="tab-content active-tab" id="tab1">
@@ -196,14 +262,16 @@ a:hover {
         const nextButton = document.getElementById('next-button');
         const reviewAllButton = document.getElementById('review-all-button');
         const progressBar = document.getElementById('progress-bar'); // Get the progress bar element
-    
+
         const totalTabs = tabButtons.length; // Get the total number of tabs
-    
+
+        const milestones = [0, 20, 40, 60, 80]; // Define milestones as percentages
+
         let currentTab = 0;
-    
+
         // Initialize the first tab
         showTab(currentTab);
-    
+
         // Function to display the current tab and update the progress bar
         function showTab(n) {
             tabButtons.forEach((tabButton, index) => {
@@ -213,26 +281,31 @@ a:hover {
                     tabButton.classList.remove('active-tab');
                 }
             });
-    
+
             prevButton.disabled = n === 0;
             nextButton.disabled = n === totalTabs - 1;
 
             // Hide the "Previous" button on the first tab
-        prevButton.style.display = n === 0 ? 'none' : 'block';
+            prevButton.style.display = n === 0 ? 'none' : 'block';
 
-        // Hide the "Next" button on the last tab
-        nextButton.style.display = n === totalTabs - 1 ? 'none' : 'block';
+            // Hide the "Next" button on the last tab
+            nextButton.style.display = n === totalTabs - 1 ? 'none' : 'block';
 
-    
             // Calculate the width of the progress bar as a percentage
-            const progressWidth = ((n + 1) / totalTabs) * 100;
+            const progressWidth = (milestones[n] / milestones[milestones.length - 1]) * 100;
             progressBar.style.width = `${progressWidth}%`;
-    
-            // Load saved notes for the current lesson
-            const notesField = document.getElementById(`notes-lesson${n + 1}`);
-            notesField.value = getSavedNotes(n);
+
+            // Update milestone percentages and subtitles
+            const milestoneElements = document.querySelectorAll('.milestone');
+            milestoneElements.forEach((milestoneElement, index) => {
+                milestoneElement.style.left = `${milestones[index]}%`;
+                milestoneElement.querySelector('.milestone-percentage').textContent = `${milestones[index]}%`;
+                // Update the subtitle text as needed for each milestone
+                // For example, you can set different subtitles for each milestone.
+                // milestoneElement.querySelector('.milestone-subtitle').textContent = 'Your Subtitle';
+            });
         }
-    
+
         // Event listener for Previous button
         prevButton.addEventListener('click', () => {
             if (currentTab > 0) {
@@ -240,7 +313,7 @@ a:hover {
                 showTab(currentTab);
             }
         });
-    
+
         // Event listener for Next button
         nextButton.addEventListener('click', () => {
             if (currentTab < totalTabs - 1) {
@@ -248,17 +321,17 @@ a:hover {
                 showTab(currentTab);
             }
         });
-    
+
         // Function to save notes for a lesson
         function saveNotes(lessonIndex, notes) {
             localStorage.setItem(`notes-lesson${lessonIndex + 1}`, notes);
         }
-    
+
         // Function to get saved notes for a lesson
         function getSavedNotes(lessonIndex) {
             return localStorage.getItem(`notes-lesson${lessonIndex + 1}`) || '';
         }
-    
+
         // Event listener for notes fields
         tabButtons.forEach((tabButton, index) => {
             const notesField = document.getElementById(`notes-lesson${index + 1}`);

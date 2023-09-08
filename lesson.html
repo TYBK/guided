@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Include Quill CSS -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <style>
         /* Reset some default styles */
         body {
@@ -17,25 +19,26 @@
             font-family: 'Montserrat', sans-serif;
             background-color: #C7B6D2;
         }
-
+        
         .guided-logo {
             margin-left: 30px;
             width: 200px;
+            position: fixed; /* Set the position to fixed */
+            top: 60px; /* Adjust the top value according to your design */
             position: absolute;
-            top: 60px;
         }
-
+        
         #content_container {
             padding: 40px;
             height: 70%;
         }
-
+        
         h1 {
             text-align: center;
             font-size: 24px;
-            margin: 40px 0 40px 0;
+            margin: 40px 0 40px 0; /* Add margin to create space below the logo */
         }
-
+        
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -44,7 +47,7 @@
             border-radius: 8px;
             box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
         }
-
+        
         .tab-content {
             display: none;
             padding: 20px;
@@ -52,21 +55,21 @@
             border-radius: 8px;
             margin-top: 20px;
         }
-
+        
         .active-tab {
             display: block;
         }
-
+        
         h2 {
             font-size: 20px;
             margin-bottom: 10px;
         }
-
+        
         p {
             font-size: 16px;
             margin-bottom: 20px;
         }
-
+        
         button {
             margin-right: 10px;
             background-color: #141616;
@@ -76,36 +79,30 @@
             padding: 10px 20px;
             font-weight: 600;
             cursor: pointer;
-            touch-action: manipulation;
+            touch-action: manipulation; /* Disable default touch gestures */
         }
-
-        .ql-toolbar {
-            background-color: white;
-            border-radius: 8px;
-            margin-bottom: 5px;
-        }
-
-        .ql-editor {
+        
+        textarea {
             height: 300px;
+            width: calc(100% - 20px); /* Adjusted width to account for left and right spacing */
+            margin: 0;
             border: 2px solid #000000;
+            border-radius: 8px;
             padding: 10px;
             margin-left: 10px;
             font-family: 'Montserrat', sans-serif;
             font-weight: 500;
             color: #000000;
             box-sizing: border-box;
-            background-color: white;
-            border-radius: 8px;
-            margin-bottom: 25px;
-
         }
-
+        
         .home-link {
             font-weight: 500;
             color: blue;
             text-decoration: underline;
         }
-
+        
+        
         .next-btns {
             display: flex;
             justify-content: space-between;
@@ -113,9 +110,10 @@
             margin-left: 20px;
             margin-right: 20px;
             margin-bottom: 20px;
-            width: 160px;
+            width: 160px; /* Add a fixed width to maintain space */
+            /* center the buttons */
         }
-
+        
         .progress {
             background-color: #FFFFFF;
             border: 2px solid #000000;
@@ -125,21 +123,32 @@
             margin-left: 20px;
             margin-right: 20px;
         }
-
+        
         .progress-bar {
             background-color: #141616;
             height: 100%;
             width: 0;
             border-radius: 6px;
         }
-
+        
         a {
             color: #000000;
             text-decoration: none;
         }
-
+        
         a:hover {
             opacity: 0.8;
+        }
+
+        .ql-toolbar {
+            background-color: white;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .ql-editor {
+            background-color: white;
+            border: 2px solid #000000;
+            border-radius: 0px 0px 8px 8px;
         }
     </style>
 </head>
@@ -161,22 +170,22 @@
     <div class="tab-content active-tab" id="tab1">
         <h2>Lesson 1: Introduction</h2>
         <p>Welcome to the course! This is the introduction lesson.</p>
-        <div id="notes-lesson1" class="ql-editor"></div>
+        <div id="editor-lesson1" class="ql-editor"></div>
     </div>
     <div class="tab-content" id="tab2">
         <h2>Lesson 2: Basics</h2>
         <p>In this lesson, you will learn the basics.</p>
-        <div id="notes-lesson2" class="ql-editor"></div>
+        <div id="editor-lesson2" class="ql-editor"></div>
     </div>
     <div class="tab-content" id="tab3">
         <h2>Lesson 3: Intermediates</h2>
         <p>In this lesson, you will learn the intermediates.</p>
-        <div id="notes-lesson3" class="ql-editor"></div>
+        <div id="editor-lesson3" class="ql-editor"></div>
     </div>
     <div class="tab-content" id="tab4">
         <h2>Lesson 4: Mastery</h2>
         <p>In this lesson, you will learn mastery.</p>
-        <div id="notes-lesson4" class="ql-editor"></div>
+        <div id="editor-lesson4" class="ql-editor"></div>
     </div>
     <div class="tab-content" id="tab5">
         <h2>Finished: Congratulations</h2>
@@ -190,117 +199,119 @@
         <button id="next-button">Next</button>
     </div>
 
-    <!-- Include Quill CSS -->
-    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-   <!-- ... (previous code) ... -->
+    <!-- Include Quill JavaScript -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
-<!-- Include Quill JavaScript -->
-<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script>
+        // Array to store Quill instances
+        const quillInstances = [];
 
-<script>
-    const tabButtons = document.querySelectorAll('[id^="tab"]');
-    const prevButton = document.getElementById('prev-button');
-    const nextButton = document.getElementById('next-button');
-    const progressBar = document.getElementById('progress-bar'); // Get the progress bar element
+        // Function to initialize Quill editor for a notes field
+        function initializeQuillEditor(lessonIndex) {
+            const editorId = `editor-lesson${lessonIndex + 1}`;
+            const editor = document.getElementById(editorId);
 
-    const totalTabs = tabButtons.length; // Get the total number of tabs
+            // Destroy previous Quill instance if it exists
+            if (quillInstances[lessonIndex]) {
+                quillInstances[lessonIndex].destroy();
+            }
 
-    let currentTab = 0;
+            const toolbarOptions = [
+                ['bold', 'italic', 'underline', 'strike'],
+                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                ['link', 'image'],
+                ['clean']
+            ];
 
-    // Initialize the first tab
-    showTab(currentTab);
+            const quill = new Quill(editor, {
+                theme: 'snow',
+                modules: {
+                    toolbar: toolbarOptions
+                }
+            });
 
-    // Function to display the current tab and update the progress bar
-    function showTab(n) {
-        tabButtons.forEach((tabButton, index) => {
-            if (index === n) {
-                tabButton.classList.add('active-tab');
+            // Store the Quill instance in the array
+            quillInstances[lessonIndex] = quill;
+
+            quill.on('text-change', () => {
+                const notes = quill.root.innerHTML;
+                saveNotes(lessonIndex, notes);
+            });
+        }
+
+        const tabButtons = document.querySelectorAll('[id^="tab"]');
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+        const progressBar = document.getElementById('progress-bar'); // Get the progress bar element
+    
+        const totalTabs = tabButtons.length; // Get the total number of tabs
+    
+        let currentTab = 0;
+    
+        // Initialize the first tab
+        showTab(currentTab);
+    
+        // Function to display the current tab and update the progress bar
+        function showTab(n) {
+            tabButtons.forEach((tabButton, index) => {
+                if (index === n) {
+                    tabButton.classList.add('active-tab');
+                } else {
+                    tabButton.classList.remove('active-tab');
+                }
+            });
+    
+            prevButton.disabled = n === 0;
+            nextButton.disabled = n === totalTabs - 1;
+
+            // Hide the "Previous" button on the first tab
+            prevButton.style.display = n === 0 ? 'none' : 'block';
+
+            // Hide the "Next" button on the last tab
+            nextButton.style.display = n === totalTabs - 1 ? 'none' : 'block';
+    
+            // Calculate the width of the progress bar as a percentage
+            if (n === 0) {
+                // If the current tab is tab 1, set the progress bar to 0%
+                progressBar.style.width = '0%';
             } else {
-                tabButton.classList.remove('active-tab');
+                const progressWidth = ((n + 1) / totalTabs) * 100;
+                progressBar.style.width = `${progressWidth}%`;
+            }
+    
+            // Load saved notes for the current lesson
+            const notesField = document.getElementById(`editor-lesson${n + 1}`);
+            notesField.innerHTML = getSavedNotes(n);
+    
+            // Initialize Quill editor for the current notes field
+            initializeQuillEditor(n);
+        }
+    
+        // Event listener for Previous button
+        prevButton.addEventListener('click', () => {
+            if (currentTab > 0) {
+                currentTab--;
+                showTab(currentTab);
             }
         });
-
-        prevButton.disabled = n === 0;
-        nextButton.disabled = n === totalTabs - 1;
-
-        // Hide the "Previous" button on the first tab
-        prevButton.style.display = n === 0 ? 'none' : 'block';
-
-        // Hide the "Next" button on the last tab
-        nextButton.style.display = n === totalTabs - 1 ? 'none' : 'block';
-
-        // Calculate the width of the progress bar as a percentage
-        if (n === 0) {
-            // If the current tab is tab 1, set the progress bar to 0%
-            progressBar.style.width = '0%';
-        } else {
-            const progressWidth = ((n + 1) / totalTabs) * 100;
-            progressBar.style.width = `${progressWidth}%`;
-        }
-
-        // Load saved notes for the current lesson
-        const notesField = document.getElementById(`notes-lesson${n + 1}`);
-        notesField.innerHTML = getSavedNotes(n);
-    }
-
-    // Event listener for Previous button
-    prevButton.addEventListener('click', () => {
-        if (currentTab > 0) {
-            currentTab--;
-            showTab(currentTab);
-        }
-    });
-
-    // Event listener for Next button
-    nextButton.addEventListener('click', () => {
-        if (currentTab < totalTabs - 1) {
-            currentTab++;
-            showTab(currentTab);
-        }
-    });
-
-    // Function to save notes for a lesson
-    function saveNotes(lessonIndex, notes) {
-        localStorage.setItem(`notes-lesson${lessonIndex + 1}`, notes);
-    }
-
-    // Function to get saved notes for a lesson
-    function getSavedNotes(lessonIndex) {
-        return localStorage.getItem(`notes-lesson${lessonIndex + 1}`) || '';
-    }
-
-    // Event listener for notes fields
-    tabButtons.forEach((tabButton, index) => {
-        const notesField = document.getElementById(`notes-lesson${index + 1}`);
-        const quill = new Quill(notesField, {
-            theme: 'snow',
-            modules: {
-                toolbar: [
-                    ['bold', 'italic', 'underline', 'strike'],
-                    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                    [{ 'script': 'sub'}, { 'script': 'super' }],
-                    ['link', 'image'],
-                    ['clean'],
-                ]
-            },
+    
+        // Event listener for Next button
+        nextButton.addEventListener('click', () => {
+            if (currentTab < totalTabs - 1) {
+                currentTab++;
+                showTab(currentTab);
+            }
         });
-
-// Custom link handler to open links in a new tab
-quill.getModule('toolbar').addHandler('link', () => {
-    const url = prompt('Enter the URL (e.g., www.example.com):');
-    if (url) {
-        // Check if the URL has a protocol, if not, prepend "https://"
-        const formattedUrl = url.match(/^(https?|ftp):\/\//i) ? url : `https://${url}`;
-        const range = quill.getSelection();
-        quill.format('link', formattedUrl);
-    }
-});
-
-        quill.on('text-change', () => {
-            const notes = quill.root.innerHTML;
-            saveNotes(index, notes);
-        });
-    });
-</script>
+    
+        // Function to save notes for a lesson
+        function saveNotes(lessonIndex, notes) {
+            localStorage.setItem(`notes-lesson${lessonIndex + 1}`, notes);
+        }
+    
+        // Function to get saved notes for a lesson
+        function getSavedNotes(lessonIndex) {
+            return localStorage.getItem(`notes-lesson${lessonIndex + 1}`) || '';
+        }
+    </script>
 </body>
 </html>

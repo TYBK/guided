@@ -192,101 +192,115 @@
 
     <!-- Include Quill CSS -->
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-    <!-- Include Quill JavaScript -->
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+   <!-- ... (previous code) ... -->
 
-    <script>
-        const tabButtons = document.querySelectorAll('[id^="tab"]');
-        const prevButton = document.getElementById('prev-button');
-        const nextButton = document.getElementById('next-button');
-        const progressBar = document.getElementById('progress-bar'); // Get the progress bar element
-    
-        const totalTabs = tabButtons.length; // Get the total number of tabs
-    
-        let currentTab = 0;
-    
-        // Initialize the first tab
-        showTab(currentTab);
-    
-        // Function to display the current tab and update the progress bar
-        function showTab(n) {
-            tabButtons.forEach((tabButton, index) => {
-                if (index === n) {
-                    tabButton.classList.add('active-tab');
-                } else {
-                    tabButton.classList.remove('active-tab');
-                }
-            });
-    
-            prevButton.disabled = n === 0;
-            nextButton.disabled = n === totalTabs - 1;
-    
-            // Hide the "Previous" button on the first tab
-            prevButton.style.display = n === 0 ? 'none' : 'block';
-    
-            // Hide the "Next" button on the last tab
-            nextButton.style.display = n === totalTabs - 1 ? 'none' : 'block';
-    
-            // Calculate the width of the progress bar as a percentage
-            if (n === 0) {
-                // If the current tab is tab 1, set the progress bar to 0%
-                progressBar.style.width = '0%';
-            } else {
-                const progressWidth = ((n + 1) / totalTabs) * 100;
-                progressBar.style.width = `${progressWidth}%`;
-            }
-    
-            // Load saved notes for the current lesson
-            const notesField = document.getElementById(`notes-lesson${n + 1}`);
-            notesField.innerHTML = getSavedNotes(n);
-        }
-    
-        // Event listener for Previous button
-        prevButton.addEventListener('click', () => {
-            if (currentTab > 0) {
-                currentTab--;
-                showTab(currentTab);
-            }
-        });
-    
-        // Event listener for Next button
-        nextButton.addEventListener('click', () => {
-            if (currentTab < totalTabs - 1) {
-                currentTab++;
-                showTab(currentTab);
-            }
-        });
-    
-        // Function to save notes for a lesson
-        function saveNotes(lessonIndex, notes) {
-            localStorage.setItem(`notes-lesson${lessonIndex + 1}`, notes);
-        }
-    
-        // Function to get saved notes for a lesson
-        function getSavedNotes(lessonIndex) {
-            return localStorage.getItem(`notes-lesson${lessonIndex + 1}`) || '';
-        }
-    
-        // Event listener for notes fields
+<!-- Include Quill JavaScript -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+<script>
+    const tabButtons = document.querySelectorAll('[id^="tab"]');
+    const prevButton = document.getElementById('prev-button');
+    const nextButton = document.getElementById('next-button');
+    const progressBar = document.getElementById('progress-bar'); // Get the progress bar element
+
+    const totalTabs = tabButtons.length; // Get the total number of tabs
+
+    let currentTab = 0;
+
+    // Initialize the first tab
+    showTab(currentTab);
+
+    // Function to display the current tab and update the progress bar
+    function showTab(n) {
         tabButtons.forEach((tabButton, index) => {
-            const notesField = document.getElementById(`notes-lesson${index + 1}`);
-            const quill = new Quill(notesField, {
-                theme: 'snow',
-                modules: {
-                    toolbar: [
-                        ['bold', 'italic', 'underline', 'strike'],
-                        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                        ['link', 'image'],
-                        ['clean'],
-                    ]
-                }
-            });
-    
-            quill.on('text-change', () => {
-                const notes = quill.root.innerHTML;
-                saveNotes(index, notes);
-            });
+            if (index === n) {
+                tabButton.classList.add('active-tab');
+            } else {
+                tabButton.classList.remove('active-tab');
+            }
         });
-    </script>
+
+        prevButton.disabled = n === 0;
+        nextButton.disabled = n === totalTabs - 1;
+
+        // Hide the "Previous" button on the first tab
+        prevButton.style.display = n === 0 ? 'none' : 'block';
+
+        // Hide the "Next" button on the last tab
+        nextButton.style.display = n === totalTabs - 1 ? 'none' : 'block';
+
+        // Calculate the width of the progress bar as a percentage
+        if (n === 0) {
+            // If the current tab is tab 1, set the progress bar to 0%
+            progressBar.style.width = '0%';
+        } else {
+            const progressWidth = ((n + 1) / totalTabs) * 100;
+            progressBar.style.width = `${progressWidth}%`;
+        }
+
+        // Load saved notes for the current lesson
+        const notesField = document.getElementById(`notes-lesson${n + 1}`);
+        notesField.innerHTML = getSavedNotes(n);
+    }
+
+    // Event listener for Previous button
+    prevButton.addEventListener('click', () => {
+        if (currentTab > 0) {
+            currentTab--;
+            showTab(currentTab);
+        }
+    });
+
+    // Event listener for Next button
+    nextButton.addEventListener('click', () => {
+        if (currentTab < totalTabs - 1) {
+            currentTab++;
+            showTab(currentTab);
+        }
+    });
+
+    // Function to save notes for a lesson
+    function saveNotes(lessonIndex, notes) {
+        localStorage.setItem(`notes-lesson${lessonIndex + 1}`, notes);
+    }
+
+    // Function to get saved notes for a lesson
+    function getSavedNotes(lessonIndex) {
+        return localStorage.getItem(`notes-lesson${lessonIndex + 1}`) || '';
+    }
+
+    // Event listener for notes fields
+    tabButtons.forEach((tabButton, index) => {
+        const notesField = document.getElementById(`notes-lesson${index + 1}`);
+        const quill = new Quill(notesField, {
+            theme: 'snow',
+            modules: {
+                toolbar: [
+                    ['bold', 'italic', 'underline', 'strike'],
+                    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                    [{ 'script': 'sub'}, { 'script': 'super' }],
+                    ['link', 'image'],
+                    ['clean'],
+                ]
+            },
+        });
+
+// Custom link handler to open links in a new tab
+quill.getModule('toolbar').addHandler('link', () => {
+    const url = prompt('Enter the URL (e.g., www.example.com):');
+    if (url) {
+        // Check if the URL has a protocol, if not, prepend "https://"
+        const formattedUrl = url.match(/^(https?|ftp):\/\//i) ? url : `https://${url}`;
+        const range = quill.getSelection();
+        quill.format('link', formattedUrl);
+    }
+});
+
+        quill.on('text-change', () => {
+            const notes = quill.root.innerHTML;
+            saveNotes(index, notes);
+        });
+    });
+</script>
 </body>
 </html>

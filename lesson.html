@@ -161,7 +161,6 @@
             font-weight: 600;
             cursor: pointer;
             touch-action: manipulation; /* Disable default touch gestures */
-            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -224,7 +223,6 @@
         <button id="next-button">Next</button>
     </div>
 
- 
     <!-- Include Quill JavaScript -->
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
@@ -237,30 +235,36 @@
             const editorId = `editor-lesson${lessonIndex + 1}`;
             const editor = document.getElementById(editorId);
 
-            // Check if Quill instance already exists for this lesson
-            if (!quillInstances[lessonIndex]) {
-                const toolbarOptions = [
-                    ['bold', 'italic', 'underline', 'strike'],
-                    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                    [{ 'size': ['small', false, 'large', 'huge'] }], // Add font size options
-                    ['clean']
-                ];
-
-                const quill = new Quill(editor, {
-                    theme: 'snow',
-                    modules: {
-                        toolbar: toolbarOptions
-                    }
-                });
-
-                // Store the Quill instance in the array
-                quillInstances[lessonIndex] = quill;
-
-                quill.on('text-change', () => {
-                    const notes = quill.root.innerHTML;
-                    saveNotes(lessonIndex, notes);
-                });
+            // Destroy previous Quill instance if it exists
+            if (quillInstances[lessonIndex]) {
+                quillInstances[lessonIndex].destroy();
             }
+
+            const toolbarOptions = [
+    ['bold', 'italic', 'underline', 'strike'],
+    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+    ['image'],
+    ['clean'],
+    [{ 'size': ['small', false, 'large', 'huge'] }], // Add font size options
+    [{ 'color': [] }, { 'background': [] }], // Add font color and background color options
+    [{ 'font': [] }] // Add font family options
+];
+
+
+            const quill = new Quill(editor, {
+                theme: 'snow',
+                modules: {
+                    toolbar: toolbarOptions
+                }
+            });
+
+            // Store the Quill instance in the array
+            quillInstances[lessonIndex] = quill;
+
+            quill.on('text-change', () => {
+                const notes = quill.root.innerHTML;
+                saveNotes(lessonIndex, notes);
+            });
         }
 
         const tabButtons = document.querySelectorAll('[id^="tab"]');

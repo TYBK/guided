@@ -226,7 +226,7 @@
 .footer_logo {
   width: auto;
   height: 50px;
-  margin-right: 0.5em;
+  margin-left: 70px;
 }
 
 .heart {
@@ -698,18 +698,18 @@
         }
 
         .guided-logo {
-          margin-left: 10px;
+          margin-left: -10px;
         }
 
         .login-btn {
+
         }
 
         .get-started-btn {
-
         }
 
         .intro-title {
-          font-size: 60px;
+          font-size: 90px;
           padding: 20px;
         }
 
@@ -721,10 +721,17 @@
         }
         .footer {
           display: block;
-          text-align: center;
+          text-align: left;
           padding: 20px 30px;
           font-size: 15px;
         }
+
+        .footer_logo {
+          width: auto;
+          height: 50px;
+          margin-left: 0px;
+        }
+        
         #hero .left, #final .left {
           padding: 100px 30px;
         }
@@ -734,6 +741,11 @@
         }
         section {
           padding: 100px 30px;
+        }
+
+        .contact-title {
+          padding-top: 0px;
+          font-size: 60px;
         }
 
       }

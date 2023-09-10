@@ -219,8 +219,8 @@
     <!-- Add more lessons and notes fields as needed -->
 
     <div class="next-btns">
-        <button id="prev-button">Previous</button>
-        <button id="next-button">Next</button>
+        <button id="prev-button" onclick="navigateTab(-1)">Previous</button>
+        <button id="next-button" onclick="navigateTab(1)">Next</button>
     </div>
 
     <!-- Include Quill JavaScript -->
@@ -241,14 +241,13 @@
             }
 
             const toolbarOptions = [
-    ['bold', 'italic', 'underline', 'strike'],
-    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-    ['image'],
-    [{ 'size': ['small', false, 'large', 'huge'] }], // Add font size options
-    [{ 'color': [] }, { 'background': [] }], // Add font color and background color options
-    [{ 'font': [] }] // Add font family options
-];
-
+                ['bold', 'italic', 'underline', 'strike'],
+                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                ['image'],
+                [{ 'size': ['small', false, 'large', 'huge'] }], // Add font size options
+                [{ 'color': [] }, { 'background': [] }], // Add font color and background color options
+                [{ 'font': [] }] // Add font family options
+            ];
 
             const quill = new Quill(editor, {
                 theme: 'snow',
@@ -260,6 +259,12 @@
             // Store the Quill instance in the array
             quillInstances[lessonIndex] = quill;
 
+            // Load saved notes from local storage
+            const savedNotes = getSavedNotes(lessonIndex);
+            if (savedNotes) {
+                quill.root.innerHTML = savedNotes;
+            }
+
             quill.on('text-change', () => {
                 const notes = quill.root.innerHTML;
                 saveNotes(lessonIndex, notes);
@@ -270,17 +275,22 @@
         const prevButton = document.getElementById('prev-button');
         const nextButton = document.getElementById('next-button');
         const progressBar = document.getElementById('progress-bar'); // Get the progress bar element
-    
+
         const totalTabs = tabButtons.length; // Get the total number of tabs
-    
+
         let currentTab = 0;
 
         // Array to track edit mode for each tab
         const editModes = [true, true, true, true, true];
-    
+
+        // Initialize Quill editors for all tabs
+        for (let i = 0; i < totalTabs; i++) {
+            initializeQuillEditor(i);
+        }
+
         // Initialize the first tab
         showTab(currentTab);
-    
+
         // Function to display the current tab and update the progress bar
         function showTab(n) {
             tabButtons.forEach((tabButton, index) => {
@@ -290,7 +300,7 @@
                     tabButton.classList.remove('active-tab');
                 }
             });
-    
+
             prevButton.disabled = n === 0;
             nextButton.disabled = n === totalTabs - 1;
 
@@ -299,7 +309,7 @@
 
             // Hide the "Next" button on the last tab
             nextButton.style.display = n === totalTabs - 1 ? 'none' : 'block';
-    
+
             // Calculate the width of the progress bar as a percentage
             if (n === 0) {
                 // If the current tab is tab 1, set the progress bar to 0%
@@ -308,17 +318,18 @@
                 const progressWidth = ((n + 1) / totalTabs) * 100;
                 progressBar.style.width = `${progressWidth}%`;
             }
-    
-            // Load saved notes for the current lesson
-            const notesField = document.getElementById(`editor-lesson${n + 1}`);
-            notesField.innerHTML = getSavedNotes(n);
-    
-            // Initialize Quill editor for the current notes field
-            initializeQuillEditor(n);
 
-            // Update the edit mode button text
-            const editButton = document.querySelector(`#tab${n + 1} .edit-button`);
-            editButton.textContent = editModes[n] ? 'View' : 'Edit';
+            // Toggle Quill editor visibility based on edit mode
+            for (let i = 0; i < totalTabs; i++) {
+                const editor = document.getElementById(`editor-lesson${i + 1}`);
+                const editButton = document.querySelector(`#tab${i + 1} .edit-button`);
+                if (i === n) {
+                    editor.style.display = editModes[i] ? 'block' : 'none';
+                    editButton.textContent = editModes[i] ? 'View' : 'Edit';
+                } else {
+                    editor.style.display = 'none';
+                }
+            }
         }
 
         // Function to toggle edit mode for a tab
@@ -329,36 +340,39 @@
             
             if (editModes[tabIndex - 1]) {
                 // Enable editing
-                notesField.setAttribute('contenteditable', 'true');
+                notesField.style.display = 'block';
                 editButton.textContent = 'View';
             } else {
                 // Disable editing
-                notesField.setAttribute('contenteditable', 'false');
+                notesField.style.display = 'none';
                 editButton.textContent = 'Edit';
             }
         }
-    
+
+        // Function to navigate between tabs
+        function navigateTab(step) {
+            const newTab = currentTab + step;
+            if (newTab >= 0 && newTab < totalTabs) {
+                currentTab = newTab;
+                showTab(currentTab);
+            }
+        }
+
         // Event listener for Previous button
         prevButton.addEventListener('click', () => {
-            if (currentTab > 0) {
-                currentTab--;
-                showTab(currentTab);
-            }
+            navigateTab(-1);
         });
-    
+
         // Event listener for Next button
         nextButton.addEventListener('click', () => {
-            if (currentTab < totalTabs - 1) {
-                currentTab++;
-                showTab(currentTab);
-            }
+            navigateTab(1);
         });
-    
+
         // Function to save notes for a lesson
         function saveNotes(lessonIndex, notes) {
             localStorage.setItem(`notes-lesson${lessonIndex + 1}`, notes);
         }
-    
+
         // Function to get saved notes for a lesson
         function getSavedNotes(lessonIndex) {
             return localStorage.getItem(`notes-lesson${lessonIndex + 1}`) || '';

@@ -62,29 +62,29 @@ function register() {
       });
   }
   
-  // Set up our login function
-  function login() {
-      // Get all our input fields
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-    
-      // Validate input fields
-      if (!validate_email(email) || password.length < 6) {
-        alert('Email or Password is missing or invalid.');
-        return;
-      }
-    
-      auth.signInWithEmailAndPassword(email, password)
-        .then(function () {
-          // Successfully logged in
-          alert('Welcome!');
-          window.location.href = 'dash.html'; // Redirect to dashboard
-        })
-        .catch(function (error) {
-            // Handle email verification error
-            alert('Email verification could not be sent: ' + error.message);
-          });
-    }
+// Set up our login function
+function login() {
+  // Get all our input fields
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+
+  // Validate input fields
+  if (!validate_email(email) || password.length < 6) {
+    alert('Email or Password is missing or invalid.');
+    return;
+  }
+
+  auth.signInWithEmailAndPassword(email, password)
+    .then(function () {
+      // Successfully logged in, but we're not showing the "Welcome!" alert here
+      window.location.href = 'dash.html'; // Redirect to dashboard
+    })
+    .catch(function (error) {
+      // Handle login error
+      alert('Login failed: ' + error.message);
+    });
+}
+
   // Add this user to Firebase Database
   const database_ref = database.ref();
   

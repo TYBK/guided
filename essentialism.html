@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Course Interface with Notes</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" href="Images/guidedicon.png" type="image/x-icon"/>
+    <link rel="apple-touch-icon" href="Images/guidedicon.png"/>
+    <link rel="icon" type="image/x-icon" href="Images/guidedicon.png"/>
+    <!-- Include Quill CSS -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <style>
+        /* Reset some default styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #C7B6D2;
+        }
+        
+        .guided-logo {
+            margin-left: 30px;
+            width: 200px;
+            position: fixed; /* Set the position to fixed */
+            top: 60px; /* Adjust the top value according to your design */
+            position: absolute;
+        }
+        
+        #content_container {
+            padding: 40px;
+            height: 70%;
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            margin: 40px 0 40px 0; /* Add margin to create space below the logo */
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .quote {
+        margin: 0;
+        background: #eeeeee70;
+        padding: 1em;
+        border-radius: 1em;
+        }
+        .quote figcaption,
+        .quote blockquote {
+        margin: 1em;
+        }
+
+        .directions {
+            font-size: 16px;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .page-quote {
+            font-size: 16px;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .page-details {
+            font-size: 20px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            /* center */
+            display: flex;
+            max-width: 1000px;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: transparent;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .active-tab {
+            display: block;
+        }
+        
+        h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        
+        button {
+            margin-right: 10px;
+            background-color: #141616;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-weight: 600;
+            cursor: pointer;
+            touch-action: manipulation; /* Disable default touch gestures */
+        }
+        
+        textarea {
+            height: 300px;
+            width: calc(100% - 20px); /* Adjusted width to account for left and right spacing */
+            margin: 0;
+            border: 2px solid #000000;
+            border-radius: 8px;
+            padding: 10px;
+            margin-left: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            color: #000000;
+            box-sizing: border-box;
+        }
+        
+        .home-link {
+            font-weight: 500;
+            color: blue;
+            text-decoration: underline;
+        }
+        
+        
+        .next-btns {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-left: 20px;
+            margin-right: 20px;
+            margin-bottom: 20px;
+            width: 160px; /* Add a fixed width to maintain space */
+            /* center the buttons */
+        }
+        
+        .progress {
+            background-color: #FFFFFF;
+            border: 2px solid #000000;
+            border-radius: 8px;
+            height: 20px;
+            margin-top: 20px;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+        
+        .progress-bar {
+            background-color: #141616;
+            height: 100%;
+            width: 0;
+            border-radius: 6px;
+        }
+        
+        a {
+            color: #000000;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            opacity: 0.8;
+        }
+
+        .ql-toolbar {
+            background-color: white;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .ql-editor {
+            background-color: white;
+            border: 2px solid #000000;
+            border-radius: 0px 0px 8px 8px;
+        }
+
+        .edit-button {
+            display: none;
+            background-color: #141616;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-weight: 600;
+            cursor: pointer;
+            touch-action: manipulation; /* Disable default touch gestures */
+        }
+    </style>
+</head>
+<body>
+    <a href="dash.html">
+        <img src="Images/GUIDED.png" alt="teka logo" class="guided-logo">
+    </a>
+    <div id="content_container"></div>
+    <h1>Become an Essentialist</h1>
+    
+    <!-- Tab navigation buttons -->
+    <div>
+        <div class="progress">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+    </div>
+
+    <!-- Tab content -->
+    <div class="tab-content active-tab" id="tab1">
+        <figure class="quote">
+            <blockquote>
+                “If you don’t prioritize your life, someone else will.”
+            </blockquote>
+            <figcaption>
+              &mdash; Greg McKeown</figcaption>
+          </figure>
+        <h2>Introduction</h2>
+        <p class="page-details">Welcome to this journey of Essentialism! This course is designed to help you simplify your life by focusing on what truly matters. <br><br> Inspired by the insights of Greg McKeown and others, you'll go through exercises, reflections, and questions that help you identify your 'vital few' from the 'trivial many.' <br><br> Each section of this course will focus on a key principle from Essentialism.</p>
+        <div>
+            <button class="edit-button" onclick="toggleEditMode(1)">View</button>
+        </div>
+        <div id="editor-lesson1" class="ql-editor" contenteditable="true"></div>
+    </div>
+    <div class="tab-content" id="tab2">
+        <figure class="quote">
+            <blockquote>
+                “The overwhelming reality is: we live in a world where almost everything is worthless and a very few things are exceptionally valuable."
+            </blockquote>
+            <figcaption>
+              &mdash; Greg McKeown</figcaption>
+          </figure>
+        <h2>Section 1: Identifying the "Vital Few"</h2>
+        <p class="page-details">The first principle we'll delve into is recognizing that in life, only a handful of things are truly important. <br><br> In a world filled with noise, distractions, and endless opportunities, it's easy to spread ourselves too thin. But the secret to a fulfilling life lies in identifying your "vital few" — the essential elements that bring you joy, fulfillment, and meaning. <br><br> The following journal prompts aim to guide you in this enlightening journey of discovery.</p>
+        <div>
+            <button class="edit-button" onclick="toggleEditMode(2)">View</button>
+        </div>
+        <div id="editor-lesson2" class="ql-editor" contenteditable="true"></div>
+    </div>
+    <div class="tab-content" id="tab3">
+        <h2>Becoming An Essentialist: Journal Prompts</h2>
+        <div>
+            <button class="edit-button" onclick="toggleEditMode(3)">View</button>
+        </div>
+        <div id="editor-lesson3" class="ql-editor" contenteditable="true"></div>
+    </div>
+    <div class="tab-content" id="tab4">
+        <h2>1. Identifying Your Sources of Joy and Fulfillment</h2>
+        <p class="page-details">Understanding what truly makes you happy is the first step toward a life of focused value. <br><br> What are the top 3 activities that bring you the most joy and fulfillment?</p>
+       <p class="directions">List these activities, and for each one, write a paragraph explaining why it brings you joy and how it aligns with your values or desires.</p>
+        <div>
+            <button class="edit-button" onclick="toggleEditMode(4)">View</button>
+        </div>
+        <div id="editor-lesson4" class="ql-editor" contenteditable="true"></div>
+    </div>
+    <div class="tab-content" id="tab5">
+        
+        <h2>2. Time Allocation: Reality Check</h2>
+        <p class="page-details">Often, there is a mismatch between what we value most and where we actually spend our time. <br><br> What do you spend the most time on currently? <br><br> Is there alignment with your top 3 activities?</p>
+       <p class="directions">Break down an average day or week into different activities and estimate the time spent on each. Then evaluate whether these align with your top 3 joy-inducing activities. If they don't, write down your thoughts on why that's the case.</p>
+        <div>
+            <button class="edit-button" onclick="toggleEditMode(5)">View</button>
+        </div>
+        <div id="editor-lesson5" class="ql-editor" contenteditable="true"></div>
+    </div>
+    
+    <div class="tab-content" id="tab6">
+        <figure class="quote">
+        <blockquote>
+            “You cannot overestimate the unimportance of practically everything.”
+        </blockquote>
+        <figcaption>
+          &mdash; Greg McKeown</figcaption>
+      </figure>
+        <h2>3. Reflecting on Value</h2>
+        <p class="page-details">“The overwhelming reality is: we live in a world where almost everything is worthless and a very few things are exceptionally valuable.”
+        </p>
+        <p class="page-details">This quote pushes us to reflect on what is genuinely valuable in our lives amidst a sea of distractions. <br><br> Reflect on this quote. What are the 'exceptionally valuable' things in your life? </p>
+       <p class="directions">Write down a list of items, activities, or people you consider exceptionally valuable in your life. For each, add a sentence or two explaining why it holds such high value for you.</p>
+       <div>
+        <button class="edit-button" onclick="toggleEditMode(6)">View</button>
+    </div>
+    <div id="editor-lesson6" class="ql-editor" contenteditable="true"></div>
+    </div>
+    
+    <div class="tab-content" id="tab7">
+        <h2>Finished: Congratulations</h2>
+        <p>You should be proud!</p>
+        <p>Back to: <a href="dash.html" class="home-link">Home</a> </p>
+    </div>
+    <!-- Add more lessons and notes fields as needed -->
+
+    <div class="next-btns">
+        <button id="prev-button" onclick="navigateTab(-1)">Previous</button>
+        <button id="next-button" onclick="navigateTab(1)">Next</button>
+    </div>
+
+    <!-- Include Quill JavaScript -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+    <script>
+        // Array to store Quill instances
+        const quillInstances = [];
+
+        // Function to initialize Quill editor for a notes field
+        function initializeQuillEditor(lessonIndex) {
+            const editorId = `editor-lesson${lessonIndex + 1}`;
+            const editor = document.getElementById(editorId);
+
+            // Destroy previous Quill instance if it exists
+            if (quillInstances[lessonIndex]) {
+                quillInstances[lessonIndex].destroy();
+            }
+
+            const toolbarOptions = [
+                ['bold', 'italic', 'underline', 'strike'],
+                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                ['image'],
+                [{ 'size': ['small', false, 'large', 'huge'] }], // Add font size options
+                [{ 'color': [] }, { 'background': [] }], // Add font color and background color options
+                [{ 'font': [] }] // Add font family options
+            ];
+
+            const quill = new Quill(editor, {
+                theme: 'snow',
+                modules: {
+                    toolbar: toolbarOptions
+                }
+            });
+
+            // Store the Quill instance in the array
+            quillInstances[lessonIndex] = quill;
+
+            // Load saved notes from local storage
+            const savedNotes = getSavedNotes(lessonIndex);
+            if (savedNotes) {
+                quill.root.innerHTML = savedNotes;
+            }
+
+            quill.on('text-change', () => {
+                const notes = quill.root.innerHTML;
+                saveNotes(lessonIndex, notes);
+            });
+        }
+
+        const tabButtons = document.querySelectorAll('[id^="tab"]');
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+        const progressBar = document.getElementById('progress-bar'); // Get the progress bar element
+
+        const totalTabs = tabButtons.length; // Get the total number of tabs
+
+        let currentTab = 0;
+
+        // Array to track edit mode for each tab
+        const editModes = [true, true, true, true, true];
+
+        // Initialize Quill editors for all tabs
+        for (let i = 0; i < totalTabs; i++) {
+            initializeQuillEditor(i);
+        }
+
+        // Initialize the first tab
+        showTab(currentTab);
+
+        function showTab(n) {
+    tabButtons.forEach((tabButton, index) => {
+        if (index === n) {
+            tabButton.classList.add('active-tab');
+        } else {
+            tabButton.classList.remove('active-tab');
+        }
+    });
+
+    prevButton.disabled = n === 0;
+    nextButton.disabled = n === totalTabs - 1;
+
+    // Hide the "Previous" button on the first tab
+    prevButton.style.display = n === 0 ? 'none' : 'block';
+
+    // Hide the "Next" button on the last tab
+    nextButton.style.display = n === totalTabs - 1 ? 'none' : 'block';
+
+    // Calculate the width of the progress bar as a percentage
+    if (n === 0) {
+        // If the current tab is tab 1, set the progress bar to 0%
+        progressBar.style.width = '0%';
+    } else {
+        const progressWidth = ((n + 1) / totalTabs) * 100;
+        progressBar.style.width = `${progressWidth}%`;
+    }
+
+    // Always display the Quill editor for the current tab
+    for (let i = 0; i < totalTabs; i++) {
+        const editor = document.getElementById(`editor-lesson${i + 1}`);
+        const editButton = document.querySelector(`#tab${i + 1} .edit-button`);
+        if (i === n) {
+            editor.style.display = 'block'; // Always display the editor
+            editButton.textContent = editModes[i] ? 'View' : 'Edit';
+        } else {
+            editor.style.display = 'none';
+        }
+    }
+}
+
+        // Function to toggle edit mode for a tab
+        function toggleEditMode(tabIndex) {
+            editModes[tabIndex - 1] = !editModes[tabIndex - 1];
+            const notesField = document.getElementById(`editor-lesson${tabIndex}`);
+            const editButton = document.querySelector(`#tab${tabIndex} .edit-button`);
+            
+            if (editModes[tabIndex - 1]) {
+                // Enable editing
+                notesField.style.display = 'block';
+                editButton.textContent = 'View';
+            } else {
+                // Disable editing
+                notesField.style.display = 'none';
+                editButton.textContent = 'Edit';
+            }
+        }
+
+        // Function to navigate between tabs
+        function navigateTab(step) {
+            const newTab = currentTab + step;
+            if (newTab >= 0 && newTab < totalTabs) {
+                currentTab = newTab;
+                showTab(currentTab);
+            }
+        }
+
+        // Event listener for Previous button
+        prevButton.addEventListener('click', () => {
+            navigateTab(-1);
+        });
+
+        // Event listener for Next button
+        nextButton.addEventListener('click', () => {
+            navigateTab(1);
+        });
+
+        // Function to save notes for a lesson
+        function saveNotes(lessonIndex, notes) {
+            localStorage.setItem(`notes-lesson${lessonIndex + 1}`, notes);
+        }
+
+        // Function to get saved notes for a lesson
+        function getSavedNotes(lessonIndex) {
+            return localStorage.getItem(`notes-lesson${lessonIndex + 1}`) || '';
+        }
+    </script>
+</body>
+</html>

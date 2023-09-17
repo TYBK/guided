@@ -39,7 +39,8 @@
   overflow: hidden;
   /* scrollbar color */
   scrollbar-color: #ff0000 #0000ff;
-  padding-left: 50px;
+  padding-left: 30px;
+  padding-right: 50px;
 }
 
 .slides {
@@ -53,23 +54,58 @@
 /* Updated styles for each slide anchor tag */
 .slide-1, .slide-2, .slide-3, .slide-4, .slide-5 {
     flex-shrink: 0;
-    width: 330px;
-    height: 400px;
-    margin-right: 100px;
-    border-radius: 10px;
+    width: 530px;
+    height: 250px;
+    margin-right: 30px;
+    border-radius: 60px;
     background: #eee;
     scroll-snap-align: start;
     cursor: pointer;
     transition: transform .3s, opacity 0.2s; /* Decreased transition duration */
     opacity: 1; /* Initial opacity */
-    text-align: center; /* Center content */
+    text-align: left; /* Center content */
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 100px;
+    font-size: 20px;
     text-decoration: none; /* Remove underlines from anchor tags */
-    color: #000000;
+    color: #ffffff;
         will-change: transform, opacity;
+}
+
+.slide-1 {
+    background: #24243A;
+}
+
+.slide-2 {
+    background: #ED7071;
+}
+
+.slide-3 {
+    background: #0068FF;
+}
+
+.course-title {
+  white-space: nowrap;
+  color: #FFF;
+  text-shadow: 0px 0.5988233685493469px 0.5988233685493469px rgba(0, 0, 0, 0.25);
+  font-family: Inter;
+  font-size: 20.527px;
+  font-style: normal;
+  line-height: normal;
+}
+
+.course-description {
+  width: 487.656px;
+  height: 83.926px;
+  flex-shrink: 0;
+  color: #FFF;
+  font-family: Satoshi;
+  font-size: 12.291px;
+  font-style: italic;
+  font-weight: 500;
+  line-height: normal;
+  overflow: hidden;
 }
 
 
@@ -387,6 +423,8 @@
                 margin-top: 75px; /* Adjust margin-top for spacing */
                 padding-left: 55px;
             }
+            .slide-1, .slide-2, .slide-3, .slide-4, .slide-5 {
+            }
         }
 
     </style>
@@ -411,19 +449,25 @@
 
 <div class="slider">
     <div class="slides">
-        <a href="essentialism.html" class="slide-1"> <!-- Updated anchor tag -->
-            1
-        </a>
-        <a href="lesson.html" class="slide-2"> <!-- Updated anchor tag -->
-            2
-        </a>
-        <a href="lesson.html" class="slide-3"> <!-- Updated anchor tag -->
-            3
-        </a>
-        <a href="lesson.html" class="slide-4">      <!-- Updated anchor tag -->
-            4
-        </a>
+      <a href="essentialism.html" class="slide-1">
+        <div class="course-details">
+            <h1 class="course-title">Become an Essentialist</h1>
+            <p class="course-description">Welcome to this journey of Essentialism! This course is designed to help you simplify your life by focusing on what truly matters. Inspired by the insights of Greg McKeown and others, you'll go through exercises, reflections, and questions that help you identify your 'vital few' from the 'trivial many.' Each section of this course will focus on a key principle from Essentialism.</p>
+        </div>
+    </a>
+    <a href="essentialism.html" class="slide-2">
+      <div class="course-details">
+          <h1 class="course-title">Productivity Mastery</h1>
+          <p class="course-description">Welcome to this journey of Essentialism! This course is designed to help you simplify your life by focusing on what truly matters. Inspired by the insights of Greg McKeown and others, you'll go through exercises, reflections, and questions that help you identify your 'vital few' from the 'trivial many.' Each section of this course will focus on a key principle from Essentialism.</p>
+      </div>
+  </a>
+  <a href="essentialism.html" class="slide-3">
+    <div class="course-details">
+        <h1 class="course-title">Emotional Well-Being</h1>
+        <p class="course-description">Welcome to this journey of Essentialism! This course is designed to help you simplify your life by focusing on what truly matters. Inspired by the insights of Greg McKeown and others, you'll go through exercises, reflections, and questions that help you identify your 'vital few' from the 'trivial many.' Each section of this course will focus on a key principle from Essentialism.</p>
     </div>
+</a>
+</div>
 </div>
 
     <div id="content_container"></div>

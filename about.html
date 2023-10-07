@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JX&Co | About</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="A COLLABORATION BETWEEN NATURE AND MAN">
+    <meta property="og:image" content="images/intro-thumbnail-tile.png">
+    <link rel="icon" href="images/jx-smiley.png" type="image/icon type">
+    <link rel="stylesheet" href="//embed.typeform.com/next/css/popup.css" />
+  <style>
+    body {
+      background-color: #EFEFEF;
+      padding: 25px;
+      display: grid;
+      height: 100vh; /* Ensure the page takes the full viewport height */
+    }
+
+    .logo {
+      background: url("images/jx_newlogo-1.png") no-repeat center/contain;
+      text-align: left;
+      color: #fff;
+      height: 50px;
+      display: none;
+    }
+    
+    .intro-id {
+      position: absolute;
+      top: 0;
+      left: 0;
+      text-align: left;
+      color: #fff;
+      margin-left: 50px;
+      padding-top: 100px;
+    }
+
+    #main {
+      text-align: right;
+      margin-top: -100px;
+      padding-bottom: 150px;
+    }
+
+    #main .icon {
+      margin: 10px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    #main .icon:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    }
+
+        #main .icon-project {
+      margin: 10px;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    #main .icon-project:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    @keyframes keyframes1 {
+      0% {
+        transform: translateY(0);
+        animation-timing-function: ease-in-out;
+      }
+
+      50% {
+        transform: translateY(-5px);
+        animation-timing-function: ease-in-out;
+      }
+
+      100% {
+        transform: translateY(0);
+        animation-timing-function: ease-in-out;
+      }
+    }
+
+    @keyframes keyframes2 {
+      0% {
+        transform: translateY(0);
+        animation-timing-function: ease-in-out;
+      }
+
+      50% {
+        transform: translateY(-5px);
+        animation-timing-function: ease-in-out;
+      }
+
+      100% {
+        transform: translateY(0);
+        animation-timing-function: ease-in-out;
+      }
+    }
+
+    .owl {
+      display: grid;
+      place-items: center;
+      width: 75px;
+    }
+
+    /* Styles for the image popup */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      text-align: center;
+      z-index: 9999;
+    }
+
+    .popup img,
+    .popup video {
+      max-width: 80%;
+      max-height: 80%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 40px;
+    }
+
+  /* Styles for the password popup */
+  .popup-password {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    z-index: 9999;
+  }
+
+  .popup-password-content {
+    width: 600px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff71;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .popup-password h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .popup-password input[type="password"] {
+    width: 300px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+  .popup-password button {
+    padding: 10px 20px;
+    background-color: #2c2c2c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .popup-password button:hover {
+    background-color: #2c2c2c;
+  }
+
+
+        /* Styles for the breadcrumb navigation menu */
+        .breadcrumbs {
+      text-align: start;
+      margin-left: 20px;
+      margin-top: 380px;
+      margin-bottom: 50px;
+      z-index: 9999;
+    }
+  
+    .breadcrumb {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 14px;
+        color: #333;
+        /* remove link color */
+        text-decoration: none;
+        /* move left */
+        padding: 10px;
+    }
+  
+    .breadcrumb:last-child {
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .footer-tag {
+    bottom: 0;
+    left: 50%;
+    margin-bottom: 20px;
+    color: #B2B2B2;
+    font-size: 12px;
+    /* center on screen */
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    font-family: arial, helvetica, sans-serif;
+    cursor: pointer;
+  }
+
+  .rotate {
+  animation: rotation 8s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+  /* media queries */
+  @media screen and (max-width: 600px) {
+
+    body {
+    overflow-x: hidden;
+    /* move over to left */
+    padding-left: 0px;
+    }
+
+    #main {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    #main .icon {
+      margin: 10px;
+      max-width: 325px;
+      max-height: auto;
+      margin-right: 0px;
+
+    }
+
+    #main .icon-project {
+      margin: 10px;
+      max-width: 325px;
+      max-height: 60px;
+      border-radius: 20px;
+      margin-right: 0px;
+
+    }
+
+    .intro-id { 
+      margin-left: 50px;
+      margin-top: -20px;
+    }
+
+    .footer-tag {
+      margin-right: 40px;
+  }
+  }
+
+  </style>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CBL0R583RS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CBL0R583RS');
+</script>
+</head>
+
+<body>
+  <div class="logo">.</div>
+  <div class="intro-id">
+    <img src="images/id-tile.png" width="200px" height="auto">
+  </div>
+  <div class="breadcrumbs">
+    <span class="breadcrumb"><a href="https://jxandco.com/">Home</a></span> /
+    <span class="breadcrumb">About</span>
+  </div>
+  <div id="main">
+    <img class="icon" style="animation-delay: -1.8s; animation-duration: 2.64s" height="auto"
+    src="images/Screenshot 2023-09-26 at 11.50 4.png"  width="550">
+    <br>
+    <img class="icon" style="animation-delay: -.54s; animation-duration: 2.16s" height="auto"
+    src="images/Group 48096387.png" width="500" onclick="showWaveEmoji()">
+    <br>
+    <img class="icon" style="animation-delay: -1.8s; animation-duration: 2.64s" height="auto"
+    src="images/Group 48096386.png"  width="500">
+    <br>
+    <img class="icon" style="animation-delay: -1.8s; animation-duration: 2.64s" height="auto"
+    src="images/studio 1.png"  width="550">
+    <br>
+    <img class="icon" style="animation-delay: -.54s; animation-duration: 2.16s" height="auto"
+    src="images/Group 48096388.png" width="500" onclick="showWaveEmoji()">
+        <br>
+        <img class="icon-project" style="animation-delay: -2.4s; animation-duration: 2.24s" height="100"
+        src="images/project-tile.png" width="625" id="button">
+        <br>
+        <br>
+        <img src="images/kDDFvUp.png"" class="rotate" width="100" height="100" onclick="showWaveEmoji()" />
+        <br>
+  </div>
+  
+
+  <!-- Image and video popup container -->
+  <div class="popup" id="image-popup">
+    <img id="popupImage">
+    <video id="popupVideo" controls>
+      <source src="" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <!-- Password popup container -->
+  <div class="popup-password" id="password-popup">
+    <div class="popup-password-content">
+      <h3>Enter Password to Access</h3>
+      <input type="password" id="password-input" placeholder="Enter password to enter">
+      <button id="password-button" onclick="checkPassword()">Submit</button>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-tag" onclick="showTekaEmoji()">JX & Co</div>
+  </footer>
+  <script src="//embed.typeform.com/next/embed.js"></script>
+  <script>
+
+function showTekaEmoji() {
+  // Create an <img> element for the image
+  const emojiImage = document.createElement('img');
+  emojiImage.src = 'images/teka.png'; // Set the image source
+
+  // Style the image element
+  emojiImage.style.position = 'fixed';
+  emojiImage.style.top = '50%';
+  emojiImage.style.left = '50%';
+  emojiImage.style.transform = 'translate(-50%, -50%)';
+  emojiImage.style.zIndex = '9999';
+  emojiImage.style.width = '100px'; // You can adjust the width as needed
+
+  // Append the image to the body
+  document.body.appendChild(emojiImage);
+
+  // Set a timeout to remove the image after 2 seconds
+  setTimeout(function () {
+    emojiImage.remove(); // Remove the image after 2 seconds
+  }, 2000);
+}
+
+    function showImage(src) {
+      const popup = document.getElementById('image-popup');
+      const popupImage = document.getElementById('popupImage');
+      const popupVideo = document.getElementById('popupVideo');
+      popupImage.style.display = 'block';
+      popupVideo.style.display = 'none';
+      popupImage.src = src;
+      popup.style.display = 'block';
+  
+      // Close the popup when clicking outside
+      popup.addEventListener('click', function (e) {
+        if (e.target === this) {
+          this.style.display = 'none';
+        }
+      });
+    }
+  
+    function playVideo(src) {
+      const popup = document.getElementById('image-popup');
+      const popupImage = document.getElementById('popupImage');
+      const popupVideo = document.getElementById('popupVideo');
+      popupImage.style.display = 'none';
+      popupVideo.style.display = 'block';
+      popupVideo.src = src;
+      popup.style.display = 'block';
+  
+      // Close the popup when clicking outside
+      popup.addEventListener('click', function (e) {
+        if (e.target === this) {
+          this.style.display = 'none';
+        }
+      });
+    }
+  
+    function showPasswordPopup() {
+      const passwordPopup = document.getElementById('password-popup');
+      passwordPopup.style.display = 'block';
+    }
+  
+    function checkPassword() {
+      const passwordInput = document.getElementById('password-input').value;
+      if (passwordInput === 'password') {
+        const passwordPopup = document.getElementById('password-popup');
+        passwordPopup.style.display = 'none';
+        // Here you can add the code to show the image or perform other actions.
+        // For example: showImage('images/OJ-g8aVg.jpeg');
+      } else {
+        alert('Incorrect password. Please try again.');
+      }
+    }
+  
+
+    const { toggle } = window.tf.createPopup('y3UdUmQI', {
+        medium: 'demo-test',
+        hidden: { foo: 'foo value', bar: 'bar value' },
+      })
+      document.getElementById('button').onclick = function () {
+        toggle()
+      }
+
+
+  
+  </script>
+  
+</body>
+
+</html>

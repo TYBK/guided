@@ -236,13 +236,11 @@
   .contact-title {
     padding-top: 100px;
     font-family: "Inter-Bold.ttf", Arial;
-    font-size: 107.193px;
-    -webkit-text-fill-color: transparent;
-    -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: #000000;
+    font-size: 111px;
     white-space: nowrap; /* Add this line */
     text-align: left; /* Add this line */
     z-index: 111;
+    color: #ffffff;
   }
 
 @media screen and (min-width: 24.375em) {
@@ -509,15 +507,13 @@
 
       .intro-title {
         padding-top: 100px;
-        font-family: "Inter-Bold.ttf", Arial;
-        font-size: 207.193px;
-        -webkit-text-fill-color: transparent;
-        -webkit-text-stroke-width: 2px;
-        -webkit-text-stroke-color: #000000;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 222px;
         white-space: nowrap; /* Add this line */
         text-align: left; /* Add this line */
         z-index: 111;
-      }
+        color: #ffffff;
+      }a
 
       .spatial {
         height: 30px;
@@ -702,7 +698,6 @@
         }
 
         .login-btn {
-
         }
 
         .get-started-btn {
